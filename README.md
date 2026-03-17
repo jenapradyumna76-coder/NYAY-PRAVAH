@@ -1,4 +1,4 @@
-# NYOXRA
+# NYAY PRAVAH
 
 LexFlow/
 ├── client/                 # React Frontend
