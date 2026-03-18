@@ -1,0 +1,6 @@
+/* 2025 Modern CSS Variables and Resets */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
