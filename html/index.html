@@ -10,43 +10,65 @@
     <link rel="stylesheet" href="../styles/layout.css">
     <link rel="stylesheet" href="../styles/components.css">
     <head>
-    <style>
-        /* This is your first line of defense */
-        #main-content { display: none !important; }
-        body { background: white !important; }
-    </style>
     
-    <script>
-        // This runs BEFORE the body even exists
-        var user = prompt("ID:");
-        var pass = prompt("Password:");
-        
-        if (user === "admin" && pass === "password123") {
-            // We will show it later once the DOM is ready
-        } else {
-            window.location.href = "about:blank"; // Immediate white screen exit
-        }
-    </script>
 </head>
 </head>
 
 <body>
     <main>
-        <nav class="nav">
-            <div class="nav-brand">
-                <div class="top-row">
-                    <div id="pr_name_1">
-                        <h1>nav pravah</h1>
-                    </div>
-                    <button class="login-btn">Login</button>
-                </div>
-                <div class="bottom-row">
-                    <div id="pr_discription_1">
-                        <p>AI Powered Legal Prioritization System And Backlog Reduction System</p>
-                    </div>
-                </div>
+        <div class ="tagsection">
+            <div id="tag"> 
+                <p>NAV PRAVHA</p>
             </div>
-        </nav>
+            <div id ="tagline"></div>
+        </div>
+ <nav class="navbar">
+    <div class="logo">Nav Pravah</div>
+
+    <ul class="nav-links">
+        <li><a href="#" class="main-link">Home</a></li>
+
+        <div class="nav-group">
+            <a href="#" class="main-link">About</a>
+            <div class="tertiary-menu">
+                <a href="#">Our Mission</a>
+                <a href="#">The Team</a>
+                <a href="#">Tech Stack</a>
+                <a href="#">Roadmap</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+
+        <div class="nav-group">
+            <a href="#" class="main-link">Services</a>
+            <div class="tertiary-menu">
+                <a href="#">Case Search</a>
+                <a href="#">Lawyer Portal</a>
+                <a href="#">Legal Aid</a>
+                <a href="#">Document Vault</a>
+                <a href="#">Help Center</a>
+            </div>
+        </div>
+    </ul>
+
+    <div class="nav-actions">
+        <div class="search-bar">
+            <input type="text" placeholder="Search cases...">
+        </div>
+
+        <div class="nav-group">
+            <button class="lang-btn">EN</button>
+            <div class="tertiary-menu">
+                <a href="#">English</a>
+                <a href="#">Hindi</a>
+                <a href="#">Odia</a>
+                <a href="#">Telugu</a>
+            </div>
+        </div>
+
+        <button class="login-btn">Login</button>
+    </div>
+</nav>
         <section class="hero-carousel">
             <div class="carousel-container">
                 <div class="carousel-slide">
@@ -76,8 +98,8 @@
     <script src="../scripts/main.js"></script>
     <script src="../scripts/auth.js"></script>
     <script>
-    // If we reached here, it means they didn't get kicked out to about:blank
-    document.getElementById("main-content").style.setProperty('display', 'block', 'important');
+    
+   
 </script>
 </body>
 
