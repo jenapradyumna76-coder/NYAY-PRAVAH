@@ -8,15 +8,15 @@ document.addEventListener('DOMContentLoaded', () => {
     langOptions.forEach(option => {
         option.addEventListener('click', (e) => {
             e.preventDefault(); // Prevents the page from jumping
-            
+
             const selectedLang = option.getAttribute('data-lang');
-            
+
             // Update the main button text
             displayBtn.innerText = `Language (${selectedLang})`;
-            
+
             // Log for your future JS updates
             console.log(`Language changed to: ${selectedLang}`);
-            
+
             // Optional: Close menu after selection
             option.parentElement.style.opacity = "0";
             setTimeout(() => option.parentElement.style.opacity = "", 500);
