@@ -1,0 +1,44 @@
+<div class="judge-container">
+    <header class="dashboard-header">
+        <h1>Justice LexFlow: Daily Cause List</h1>
+        <span class="ratio-badge">Current Load: 4 Old | 4 New</span>
+    </header>
+
+    <div class="dashboard-grid">
+        <section class="case-column backlog">
+            <h2><i class="alert-icon">⚠️</i> Backlog Priority (Top 4)</h2>
+            <div id="backlog-list">
+                <div class="case-card high-priority">
+                    <div class="card-header">
+                        <span class="case-id">#OS-2022-401</span>
+                        <span class="tag">Stay Expired</span>
+                    </div>
+                    <p class="case-title">State vs. Infrastructure Corp</p>
+                    <div class="stats">
+                        <span>Adjournments: 3/3</span>
+                        <span>Age: 840 Days</span>
+                    </div>
+                    <button class="action-btn">Urgent Review</button>
+                </div>
+                </div>
+        </section>
+
+        <section class="case-column fresh">
+            <h2><i class="new-icon">⚖️</i> Fresh Filings (Top 4)</h2>
+            <div id="fresh-list">
+                <div class="case-card normal-priority">
+                    <div class="card-header">
+                        <span class="case-id">#NF-2026-012</span>
+                        <span class="tag-new">New</span>
+                    </div>
+                    <p class="case-title">Property Dispute: A vs. B</p>
+                    <div class="stats">
+                        <span>Investigation: Verified</span>
+                        <span>Filed: 2 Days Ago</span>
+                    </div>
+                    <button class="action-btn-secondary">Open Case</button>
+                </div>
+                </div>
+        </section>
+    </div>
+</div>
