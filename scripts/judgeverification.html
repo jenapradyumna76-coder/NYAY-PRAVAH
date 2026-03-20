@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Judge Licence Verification</title>
+    <link rel="stylesheet" href="../styles/login.css">
+</head>
+
+<body>
+    <main>
+        <div class="tagsection">
+            <div id="tag">
+                <p>NAV PRAVHA</p>
+            </div>
+            <div id="tagline">
+                <p>न्याय का प्रवाह</p>
+            </div>
+        </div>
+
+        <section class="auth-shell">
+            <div class="auth-card popup-card">
+                <h1 class="auth-title">Judge Licence Verification</h1>
+                <p class="auth-subtitle">Upload front and back images for licence verification.</p>
+
+                <form class="verification-upload-form">
+                    <label class="auth-label" for="judge-front-proof">Upload Front Image</label>
+                    <input class="auth-input file-input" id="judge-front-proof" name="frontProof" type="file"
+                        accept="image/*" required>
+
+                    <label class="auth-label" for="judge-back-proof">Upload Back Image</label>
+                    <input class="auth-input file-input" id="judge-back-proof" name="backProof" type="file"
+                        accept="image/*" required>
+
+                    <button class="auth-submit judge-theme upload-verification-btn" type="button">Submit
+                        Verification</button>
+
+                    <div class="flow-actions">
+                        <button class="secondary-btn back-home-btn" type="button">Back To Home</button>
+                        <button class="secondary-btn back-previous-btn" type="button">Back To Previous</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <footer class="np-footer">
+            <div class="footer-primary-links">
+                <div class="footer-grid">
+                    <div class="footer-col">
+                        <ul>
+                            <li><a href="#">AI Case Search</a></li>
+                            <li><a href="#">FAQ / User Guides</a></li>
+                            <li><a href="#">Service Status</a></li>
+                            <li><a href="#">Developer API</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <ul>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Data Handling Protocol</a></li>
+                            <li><a href="#">Feedback Portal</a></li>
+                            <li><a href="#">Accessibility</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <ul>
+                            <li><a href="#">About Nav Pravah</a></li>
+                            <li><a href="#">The Team (Code Dazzlers)</a></li>
+                            <li><a href="#">Technology Stack</a></li>
+                            <li><a href="#">MHERM Hackathon '26</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-secondary-info">
+                <div class="policy-links">
+                    <a href="#">Website Policies</a> |
+                    <a href="#">Contact Us</a> |
+                    <a href="#">Help</a> |
+                    <a href="#">Disclaimer</a>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script src="auth.js"></script>
+</body>
+
+</html>

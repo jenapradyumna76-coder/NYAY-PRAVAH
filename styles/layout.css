@@ -26,14 +26,19 @@ body {
     font-size: 1.25rem;
     font-weight: bold;
     width: 15rem;
+    margin-left: 20px;
 }
 
 #tagline {
     color: white;
     font-size: 1.2rem;
-    font-weight: bold;
-    text-align: center;
+    font-weight: 700;
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    text-align: left;
     width: 100%;
+    border-left: 3px solid white;
+    margin-left: 30px;
+    padding-left: 20px;
 }
 
 .top-row {
@@ -349,7 +354,7 @@ body {
 }
 
 .navbar {
-    background-color: #fff;
+    background-color: transparent;
     height: 5rem;
     border-radius: 5px;
     display: flex;
@@ -392,7 +397,7 @@ body {
 }
 
 .main-link {
-    color: white;
+    color: #FFFFFF;
     text-decoration: none;
     font-size: 1.1rem;
     font-weight: bold;
@@ -401,8 +406,6 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
     display: flex;
     align-items: center;
-
-
 }
 
 .nav-links {
@@ -420,7 +423,7 @@ body {
 }
 
 .nav-link {
-    color: white;
+    color: #FFFFFF;
     text-decoration: none;
     font-size: 1rem;
     font-weight: bold;
@@ -480,7 +483,7 @@ body {
     background-color: #fff9c4;
     min-width: 180px;
     padding: 10px;
-    border-radius: 8px;
+    border-radius: 0 0 12px 12px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 
     /* State: Hidden */
@@ -516,7 +519,7 @@ body {
 
 /* 4. Menu Links */
 .tertiary-menu a {
-    color: #000;
+    color: #000000 !important;
     text-decoration: none;
     padding: 10px;
     display: block;
@@ -528,55 +531,111 @@ body {
     border-radius: 4px;
 }
 
-.nav-action .login-btn {
-    background-color: #57B9FF;
+.nav-action .judge-btn,
+.nav-action .lawyer-btn {
     color: white;
     border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
+    padding: 14px 40px;
+    border-radius: 8px;
     cursor: pointer;
-
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    margin-left: 15px;
+    font-size: 1.15rem;
+    font-weight: 700;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    letter-spacing: 0.5px;
+    text-transform: capitalize;
 }
 
-.nav-action .login-btn:hover {
-    background-color: #57B9FF;
-    color: #000080;
+.judge-btn {
+    background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
 }
 
-/* 1. The Scrolled State (Violet) */
+.lawyer-btn {
+    background: linear-gradient(135deg, #7B68EE 0%, #6A5ACD 100%);
+}
+
+.judge-btn:hover {
+    background: linear-gradient(135deg, #357ABD 0%, #2A5A99 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px rgba(74, 144, 226, 0.4);
+}
+
+.lawyer-btn:hover {
+    background: linear-gradient(135deg, #6A5ACD 0%, #5A4AB5 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px rgba(123, 104, 238, 0.4);
+}
+
+/* 1. The Scrolled State (Blue) */
 .nav-scrolled {
-    background-color: #0a022c !important;
-    /* Deep Indigo/Violet */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    background-color: #007BFF !important;
+    /* Bright Blue */
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
     transition: all 0.4s ease-in-out;
 }
 
 /* 2. Change Link Colors to White on Scroll */
 .nav-scrolled .nav-links a,
 .nav-scrolled .logo,
-.nav-scrolled .nav-item {
-    color: #ffffff !important;
+.nav-scrolled .nav-item,
+.nav-scrolled .nav-link,
+.nav-scrolled .main-link,
+.nav-scrolled .nav-links .lang-btn {
+    color: #FFFFFF !important;
 }
 
-/* 3. Adjust Buttons so they still pop against Violet */
-.nav-scrolled .login-btn,
+/* 3. Adjust Buttons so they still pop against Blue */
+.nav-scrolled .judge-btn {
+    background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+    /* White gradient buttons on Blue background */
+    color: #4A90E2;
+    /* Blue text on the buttons */
+    border: 2px solid #ffffff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.nav-scrolled .lawyer-btn {
+    background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+    /* White gradient buttons on Blue background */
+    color: #7B68EE;
+    /* Purple text on the buttons */
+    border: 2px solid #ffffff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.nav-scrolled .judge-btn:hover {
+    background: linear-gradient(135deg, #f5f5f5 0%, #efefef 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+}
+
+.nav-scrolled .lawyer-btn:hover {
+    background: linear-gradient(135deg, #f5f5f5 0%, #efefef 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+}
+
 .nav-scrolled .lang-btn {
     background: #ffffff;
-    /* White buttons on Violet background */
-    color: #020415;
-    /* Violet text on the buttons */
+    /* White buttons on Blue background */
+    color: #007BFF;
+    /* Blue text on the buttons */
     border: 1px solid #ffffff;
 }
 
-.nav-scrolled .login-btn:hover {
-    background: #f1f1f1;
-    transform: translateY(-2px);
+/* 4. Keep dropdown menu text black when scrolled */
+.nav-scrolled .tertiary-menu a {
+    color: #000000 !important;
 }
 
 /* 1. The Container (The gray box) */
 .search-bar {
-    display: flex;
+    display: none;
     align-items: center;
     width: 100%;
     /* Takes up all space allowed by nav-actions */
@@ -695,6 +754,25 @@ body {
     justify-content: center;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     box-shadow: 0 4px 6px rgba(0, 123, 255, 0.1);
+}
+
+/* Style lang-btn when it's in nav-links */
+.nav-links .lang-btn {
+    background: transparent;
+    color: #000000;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    height: auto;
+    font-size: 1.1rem;
+    font-weight: bold;
+    box-shadow: none;
+}
+
+.nav-links .lang-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: none;
+    box-shadow: none;
 }
 
 /* Hover effects for both */
@@ -1103,16 +1181,18 @@ body {
     font-weight: bold;
     font-size: 0.8rem;
 }
+
 /* ==========================================================================
    LOGIN / PORTAL SELECTION STYLES
    ========================================================================== */
 
 .portal-selection-container {
-    min-height: 75vh; 
+    min-height: 75vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #fdfdfd; /* Clean white background to contrast the footer */
+    background: #fdfdfd;
+    /* Clean white background to contrast the footer */
     padding: 3rem 5%;
 }
 
@@ -1123,7 +1203,8 @@ body {
 }
 
 .selection-box h1 {
-    color: #4B0082; /* Your Deep Violet */
+    color: #4B0082;
+    /* Your Deep Violet */
     font-size: 2.8rem;
     margin-bottom: 1rem;
 }
@@ -1160,7 +1241,7 @@ body {
     align-items: center;
     font-size: 2rem;
     color: #4B0082;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
 /* The Portal Buttons */
@@ -1170,7 +1251,8 @@ body {
     font-size: 1.1rem;
     font-weight: 700;
     border: none;
-    border-radius: 50px; /* Pill shape */
+    border-radius: 50px;
+    /* Pill shape */
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     box-shadow: 0 8px 15px rgba(146, 146, 232, 0.2);
@@ -1179,12 +1261,14 @@ body {
 }
 
 .judge-btn {
-    background-color: #4B0082; /* Violet */
+    background-color: #4B0082;
+    /* Violet */
     color: white;
 }
 
 .lawyer-btn {
-    background-color: #57B9FF; /* Brand Blue */
+    background-color: #57B9FF;
+    /* Brand Blue */
     color: white;
 }
 
@@ -1196,18 +1280,32 @@ body {
 }
 
 @media (max-width: 768px) {
-    .portal-actions { gap: 2rem; }
-    .selection-box h1 { font-size: 2rem; }
+    .portal-actions {
+        gap: 2rem;
+    }
+
+    .selection-box h1 {
+        font-size: 2rem;
+    }
 }
+
 /* --- Portal Section Colors --- */
 .portal-selection-container {
-    padding: 100px 8%; /* Extra top padding so it doesn't hide under Nav */
+    padding: 100px 8%;
+    /* Extra top padding so it doesn't hide under Nav */
     background: #f4f7f6;
     min-height: 80vh;
 }
 
-.judge-btn { background: #2E3192; color: white; }
-.lawyer-btn { background: #57B9FF; color: white; }
+.judge-btn {
+    background: #2E3192;
+    color: white;
+}
+
+.lawyer-btn {
+    background: #57B9FF;
+    color: white;
+}
 
 /* --- Footer Colors (The "Decision") --- */
 .np-footer {
@@ -1215,7 +1313,8 @@ body {
 }
 
 .footer-primary-links {
-    background-color: #1a1c4d; /* Darker Midnight Indigo */
+    background-color: #1a1c4d;
+    /* Darker Midnight Indigo */
     color: #e0e0e0;
     padding: 4rem 8%;
 }
@@ -1243,4 +1342,254 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 12px;
     padding: 20px;
+}
+
+.services-section {
+    margin-top: 2rem;
+    padding: 1.5rem 1rem 2.5rem;
+    background: linear-gradient(180deg, rgba(87, 185, 255, 0.08) 0%, rgba(255, 255, 255, 0.8) 100%);
+}
+
+.services-shell {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.services-heading {
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    color: #0d1b3d;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    animation: serviceFadeUp 0.7s ease both;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.service-card {
+    background: linear-gradient(145deg, #ffffff 0%, #f5fbff 100%);
+    border: 1px solid rgba(74, 144, 226, 0.2);
+    border-radius: 16px;
+    padding: 1.2rem;
+    box-shadow: 0 10px 26px rgba(24, 73, 122, 0.12);
+    transform: translateY(14px);
+    opacity: 0;
+    animation: serviceFadeUp 0.6s ease forwards;
+    transition: transform 0.28s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.service-card:nth-child(2) {
+    animation-delay: 0.12s;
+}
+
+.service-card:nth-child(3) {
+    animation-delay: 0.24s;
+}
+
+.service-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(66, 153, 225, 0.55);
+    box-shadow: 0 16px 34px rgba(66, 153, 225, 0.35);
+}
+
+.service-title {
+    font-size: 1.2rem;
+    color: #123a6b;
+    margin-bottom: 0.6rem;
+}
+
+.service-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #2e3f58;
+}
+
+@keyframes serviceFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (min-width: 700px) {
+    .services-section {
+        margin-top: 2.5rem;
+        padding: 2rem 1.25rem 3rem;
+    }
+
+    .services-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1.25rem;
+    }
+
+    .services-heading {
+        font-size: 2.3rem;
+        margin-bottom: 2rem;
+    }
+
+    .service-card {
+        padding: 1.5rem;
+    }
+}
+
+.app-description-section {
+    padding: 0 1rem 3rem;
+}
+
+.app-description-shell {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: linear-gradient(160deg, #ffffff 0%, #eef7ff 100%);
+    border: 1px solid rgba(58, 116, 184, 0.2);
+    border-radius: 18px;
+    padding: 1.25rem;
+    box-shadow: 0 12px 26px rgba(21, 66, 109, 0.12);
+}
+
+.app-description-heading {
+    font-size: 1.7rem;
+    color: #0d1b3d;
+    margin-bottom: 0.75rem;
+}
+
+.app-description-text {
+    font-size: 0.98rem;
+    line-height: 1.75;
+    color: #2a3d57;
+    margin-bottom: 0.85rem;
+}
+
+.app-description-text:last-child {
+    margin-bottom: 0;
+}
+
+@media (min-width: 700px) {
+    .app-description-section {
+        padding: 0 1.25rem 3.5rem;
+    }
+
+    .app-description-shell {
+        padding: 1.8rem 2rem;
+    }
+
+    .app-description-heading {
+        font-size: 2rem;
+    }
+
+    .app-description-text {
+        font-size: 1.03rem;
+    }
+}
+
+.about-us-section {
+    padding: 0 1rem 3.25rem;
+}
+
+.about-us-shell {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: linear-gradient(150deg, #f6fbff 0%, #ffffff 55%, #f0f7ff 100%);
+    border: 1px solid rgba(44, 104, 176, 0.22);
+    border-radius: 20px;
+    padding: 1.25rem;
+    box-shadow: 0 14px 28px rgba(23, 74, 126, 0.14);
+}
+
+.about-us-heading {
+    font-size: 1.7rem;
+    color: #0c2246;
+    margin-bottom: 0.6rem;
+}
+
+.about-us-intro {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #29405f;
+    margin-bottom: 1rem;
+}
+
+.about-us-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+}
+
+.about-us-card {
+    background: #ffffff;
+    border: 1px solid rgba(70, 138, 214, 0.2);
+    border-radius: 14px;
+    padding: 1rem;
+    box-shadow: 0 8px 18px rgba(26, 87, 147, 0.1);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.about-us-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 24px rgba(51, 129, 216, 0.24);
+}
+
+.about-us-card-title {
+    font-size: 1.08rem;
+    color: #143a6c;
+    margin-bottom: 0.45rem;
+}
+
+.about-us-card-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #314b6a;
+}
+
+@media (min-width: 700px) {
+    .about-us-section {
+        padding: 0 1.25rem 3.7rem;
+    }
+
+    .about-us-shell {
+        padding: 1.8rem 2rem;
+    }
+
+    .about-us-heading {
+        font-size: 2rem;
+    }
+
+    .about-us-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+    }
+}
+
+/* Navbar portal controls: circular + larger while fitting nav height */
+.navbar .nav-actions .judge-btn,
+.navbar .nav-actions .lawyer-btn {
+    width: 3.4rem;
+    height: 3.4rem;
+    min-width: 3.4rem;
+    padding: 0;
+    margin-left: 0;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.68rem;
+    font-weight: 700;
+    line-height: 1;
+    text-transform: uppercase;
+    overflow: hidden;
+}
+
+/* Keep circular shape in scrolled state too */
+.navbar.nav-scrolled .nav-actions .judge-btn,
+.navbar.nav-scrolled .nav-actions .lawyer-btn {
+    border-radius: 50%;
 }
