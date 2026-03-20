@@ -22,3 +22,54 @@
    ->css/layout.cssCarousel logic and security styling
  --- SARTHAK_README.mdPersonal---
   -> contribution tracking
+  # 🚀 Nav Pravah | MHERM Hackathon 2026
+
+**Empowering Justice with AI** A high-performance, modular web solution built for the MHERM Hackathon. This project prioritizes "Systems Thinking" and "Vibe Coding" to ensure scalable architecture and a premium user experience.
+
+---
+
+## 🛠️ Tech Stack
+- **Frontend:** HTML5, CSS3 (Custom Animations & Flexbox), JavaScript (ES6+)
+- **Backend:** Integrated via Gemini API (Logic Assistant)
+- **Deployment:** AWS EC2 (VPN Secured)
+
+---
+
+## ⚡ Recent Progress (Frontend Sprint)
+
+### 1. Smart Navigation Layer
+- Implemented a **Sticky Navbar** with dynamic state management.
+- Added a `scroll` event listener in `script.js` that triggers a **Deep Violet** background and **Backdrop Blur** (Frosted Glass) once the user leaves the hero section.
+- Optimized link contrast to ensure accessibility across all background states.
+
+### 2. Hero Split-Screen Architecture
+- Designed a 50/50 split-screen layout using **Flexbox**.
+- **Media Section:** Embedded a responsive YouTube player with a 16:9 aspect ratio wrapper and rounded-edge masking.
+- **Content Section:** Integrated the "Empowering Justice" description with a custom linear gradient (`#57B9FF` to Deep Blue) for visual depth.
+
+### 3. UI Polish & Interactivity
+- Created **Layered Shadows** for service boxes (`.sec-box-1`) using negative spread values for a professional "floating" effect.
+- Added `translateY` transitions on hover to improve tactile feedback.
+- Refactored inline scripts into a modular `script.js` to maintain clean-code best practices.
+
+---
+
+## 👥 The Team: Code Dazzlers
+
+| Member | Primary Role | Core Focus |
+| :--- | :--- | :--- |
+| **Sarthak Mishra** | Lead Frontend / Architect | UI Logic, System Design, CSS Animations |
+| **Susmita Jena** | Team Manager / Frontend Dev | Project Roadmap, Component Integration, Frontend Flow |
+| **Acp Pradumn** | Backend Lead | API Architecture, Data Processing |
+| **Ram** | Full-Stack Flex | Feature Implementation, Backend Support |
+
+---
+
+## 📬 Internal Feedback Loop
+*The UI is currently using a **Violet & Brand Blue** palette. Team members please reach out if:*
+1. The color palette needs adjustment for backend data visualization.
+2. Any additional requirements for the "Service Boxes" are needed.
+3. You encounter any issues with the new `script.js` event listeners.
+
+---
+*Last Updated: March 19, 2026*

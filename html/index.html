@@ -9,66 +9,64 @@
     <link rel="stylesheet" href="../styles/main.css">
     <link rel="stylesheet" href="../styles/layout.css">
     <link rel="stylesheet" href="../styles/components.css">
+
     <head>
-    
-</head>
+
+    </head>
 </head>
 
 <body>
     <main>
-        <div class ="tagsection">
-            <div id="tag"> 
+        <div class="tagsection">
+            <div id="tag">
                 <p>NAV PRAVHA</p>
             </div>
-            <div id ="tagline"></div>
-        </div>
- <nav class="navbar">
-    <div class="logo">Nav Pravah</div>
-
-    <ul class="nav-links">
-        <li><a href="#" class="main-link">Home</a></li>
-
-        <div class="nav-group">
-            <a href="#" class="main-link">About</a>
-            <div class="tertiary-menu">
-                <a href="#">Our Mission</a>
-                <a href="#">The Team</a>
-                <a href="#">Tech Stack</a>
-                <a href="#">Roadmap</a>
-                <a href="#">Contact</a>
+            <div id="tagline">
+                <p>न्याय का प्रवाह</p>
             </div>
         </div>
+        <nav class="navbar">
+            <ul class="nav-links">
+                <li><a href="#" class="nav-link">Home</a></li>
+                <div class="nav-group">
+                    <a href="#" class="main-link">About</a>
+                    <div class="tertiary-menu">
+                        <a href="#">Our Mission</a>
+                        <a href="#">The Team</a>
+                        <a href="#">Tech Stack</a>
+                        <a href="#">Roadmap</a>
+                        <a href="#">Contact</a>
+                    </div>
+                </div>
 
-        <div class="nav-group">
-            <a href="#" class="main-link">Services</a>
-            <div class="tertiary-menu">
-                <a href="#">Case Search</a>
-                <a href="#">Lawyer Portal</a>
-                <a href="#">Legal Aid</a>
-                <a href="#">Document Vault</a>
-                <a href="#">Help Center</a>
+                <div class="nav-group">
+                    <a href="#" class="main-link">Services</a>
+                    <div class="tertiary-menu">
+                        <a href="#">Case Search</a>
+                        <a href="#">Lawyer Portal</a>
+                        <a href="#">Legal Aid</a>
+                        <a href="#">Document Vault</a>
+                        <a href="#">Help Center</a>
+                    </div>
+                </div>
+
+                <div class="nav-group">
+                    <button class="lang-btn main-link">EN</button>
+                    <div class="tertiary-menu">
+                        <a href="#">English</a>
+                        <a href="#">Hindi</a>
+                        <a href="#">Odia</a>
+                        <a href="#">Telugu</a>
+                    </div>
+                </div>
+            </ul>
+
+            <div class="nav-actions">
+
+                <button class="judge-btn" id="judge-portal-btn">Judge</button>
+                <button class="lawyer-btn" id="lawyer-portal-btn">Lawyer</button>
             </div>
-        </div>
-    </ul>
-
-    <div class="nav-actions">
-        <div class="search-bar">
-            <input type="text" placeholder="Search cases...">
-        </div>
-
-        <div class="nav-group">
-            <button class="lang-btn">EN</button>
-            <div class="tertiary-menu">
-                <a href="#">English</a>
-                <a href="#">Hindi</a>
-                <a href="#">Odia</a>
-                <a href="#">Telugu</a>
-            </div>
-        </div>
-
-        <button class="login-btn">Login</button>
-    </div>
-</nav>
+        </nav>
         <section class="hero-carousel">
             <div class="carousel-container">
                 <div class="carousel-slide">
@@ -85,12 +83,149 @@
                 </div>
             </div>
         </section>
-        <div class="discription">
-            <div id="main_discription">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia deserunt accusantium cumque blanditiis. Amet beatae eum, distinctio dolorem perferendis totam ratione magnam iure ducimus ipsum quae ea sequi quibusdam velit!lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia deserunt accusantium cumque blanditiis. Amet beatae eum, distinctio dolorem perferendis totam ratione magnam iure ducimus ipsum quae ea sequi quibusdam velit!lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia deserunt accusantium cumque blanditiis. Amet beatae eum, distinctio dolorem perferendis totam ratione magnam iure ducimus ipsum quae ea sequi quibusdam velit!
+        <section class="services-section" aria-labelledby="services-heading">
+            <div class="services-shell">
+                <h2 class="services-heading" id="services-heading">Services</h2>
+                <div class="services-grid">
+                    <article class="service-card">
+                        <h3 class="service-title">AI Case Search</h3>
+                        <p class="service-text">Find judgments, precedents, and related case history quickly with
+                            intelligent legal search.</p>
+                    </article>
+                    <article class="service-card">
+                        <h3 class="service-title">Lawyer Portal</h3>
+                        <p class="service-text">Manage client matters, track filings, and organize legal documents in
+                            one secure workspace.</p>
+                    </article>
+                    <article class="service-card">
+                        <h3 class="service-title">Judge Portal</h3>
+                        <p class="service-text">Enable judges to review case timelines, monitor hearing flow, and
+                            access organized legal records quickly.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="app-description-section" aria-labelledby="app-description-heading">
+            <div class="app-description-shell">
+                <h2 class="app-description-heading" id="app-description-heading">Description</h2>
+                <p class="app-description-text">
+                    Nav Pravah is an AI-powered legal platform designed to make justice workflows faster, simpler, and
+                    more accessible.
+                    It helps users search cases intelligently, connect with legal support, and manage legal tasks with
+                    clarity.
+                    The platform is built to reduce complexity in legal processes by combining smart search, structured
+                    guidance,
+                    and secure digital tools for judges, lawyers, and citizens.
+                </p>
+                <p class="app-description-text">
+                    Our goal is to accelerate legal decision-making while keeping transparency and usability at the
+                    center.
+                    From case discovery to document organization and legal aid assistance, the app provides one modern
+                    system
+                    where users can track, understand, and act on legal information efficiently.
                 </p>
             </div>
-        </div>
+        </section>
+
+        <section class="about-us-section" aria-labelledby="about-us-heading">
+            <div class="about-us-shell">
+                <h2 class="about-us-heading" id="about-us-heading">About Us</h2>
+                <p class="about-us-intro">
+                    We are Team Code Dazzlers, building Nav Pravah to transform how justice services are discovered,
+                    understood, and delivered through smart digital tools.
+                </p>
+                <div class="about-us-grid">
+                    <article class="about-us-card">
+                        <h3 class="about-us-card-title">Our Vision</h3>
+                        <p class="about-us-card-text">
+                            To create a faster and more inclusive legal ecosystem where citizens, lawyers, and judges
+                            can access trusted legal information without friction.
+                        </p>
+                    </article>
+                    <article class="about-us-card">
+                        <h3 class="about-us-card-title">What We Build</h3>
+                        <p class="about-us-card-text">
+                            AI-powered case discovery, lawyer and judge portals, and structured legal workflows that
+                            reduce complexity and improve decision support.
+                        </p>
+                    </article>
+                    <article class="about-us-card">
+                        <h3 class="about-us-card-title">Our Commitment</h3>
+                        <p class="about-us-card-text">
+                            We focus on transparency, usability, and reliability so legal processes become clearer,
+                            quicker, and more accessible to everyone.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <footer class="np-footer">
+            <div class="footer-primary-links">
+                <div class="footer-grid">
+
+                    <div class="footer-col">
+                        <ul>
+                            <li><a href="#">AI Case Search</a></li>
+                            <li><a href="#">FAQ / User Guides</a></li>
+                            <li><a href="#">Service Status</a></li>
+                            <li><a href="#">Developer API</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col">
+                        <ul>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Data Handling Protocol</a></li>
+                            <li><a href="#">Feedback Portal</a></li>
+                            <li><a href="#">Accessibility</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col">
+                        <ul>
+                            <li><a href="#">About Nav Pravah</a></li>
+                            <li><a href="#">The Team (Code Dazzlers)</a></li>
+                            <li><a href="#">Technology Stack</a></li>
+                            <li><a href="#">MHERM Hackathon '26</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-app-download">
+                        <div class="app-card">
+                            <img src="nav-pravah-logo-white.png" alt="Nav Pravah Logo" class="footer-logo">
+                            <p>NAV PRAVAH</p>
+                            <span class="tagline">Justice. Accelerated.</span>
+
+                            <p class="download-text">Download Assistant From</p>
+                            <div class="app-stores">
+                                <img src="google-play-badge.png" alt="Get it on Google Play">
+                                <img src="app-store-badge.png" alt="Download on the App Store">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-secondary-info">
+                <div class="policy-links">
+                    <a href="#">Website Policies</a> |
+                    <a href="#">Contact Us</a> |
+                    <a href="#">Help</a> |
+                    <a href="#">Disclaimer</a>
+                </div>
+
+                <div class="copyright-text">
+                    <p>Content Managed & Maintained by **Code Dazzlers**.</p>
+                    <p>Built for the **MHERM Hackathon 2026**.</p>
+                    <p>Last Data Update: March 19, 2026</p>
+                </div>
+
+                <div class="partner-logos">
+                    <span class="mherm-badge">MHERM '26</span>
+                </div>
+            </div>
+        </footer>
     </main>
     <!-- Vue CDN for starting Vue -->
     <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.js"></script>
@@ -98,9 +233,9 @@
     <script src="../scripts/main.js"></script>
     <script src="../scripts/auth.js"></script>
     <script>
-    
-   
-</script>
+
+
+    </script>
 </body>
 
 </html>
