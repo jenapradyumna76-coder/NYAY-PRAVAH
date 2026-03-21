@@ -94,14 +94,11 @@
         </footer>
     </main>
 
-    <script>
-    // 1. Fixed URL (added quotes) and Key (added opening quote)
+  <script>
     const SUPABASE_URL = 'https://shotgiqungofuoquwpzw.supabase.co';
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNob3RnaXF1bmdvZnVvcXV3cHp3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQwMzQ3ODcsImV4cCI6MjA4OTYxMDc4N30.iN89Qk8pCF3TxokVQxCPhvbANQQpCTKCAYV5MM8p--M';
 
-    // 2. Corrected initialization (using the global supabase object from the CDN)
     const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
     const registrationForm = document.getElementById('registrationForm');
 
     registrationForm.addEventListener('submit', async (e) => {
@@ -119,24 +116,41 @@
         }
 
         try {
-            // 3. Using the corrected client name
-            const { data, error } = await supabaseClient.auth.signUp({
+            // STEP 1: Register in Supabase Auth
+            const { data, error: authError } = await supabaseClient.auth.signUp({
                 email: email,
                 password: password,
                 options: {
-                    data: {
-                        full_name: fullName,
-                        license_no: licenseNo,
-                        role: 'judge'
-                    }
+                    data: { full_name: fullName, license_no: licenseNo, role: 'judge' }
                 }
             });
 
-            if (error) throw error;
+            if (authError) throw authError;
 
             if (data.user) {
-                alert("Account registered successfully! Now proceeding to license image upload.");
-                window.location.href = "verification-upload.html";
+                // STEP 2: Wait for 1 second (Fixes the Foreign Key Sync error)
+                await new Promise(resolve => setTimeout(resolve, 1000));
+
+                // STEP 3: Manually insert into judges_profile table
+                const { error: dbError } = await supabaseClient
+                    .from('judges_profile')
+                    .insert([
+                        { 
+                            id: data.user.id, 
+                            full_name: fullName, 
+                            email: email, 
+                            license_no: licenseNo 
+                        }
+                    ]);
+
+                if (dbError) {
+                    // If it still fails, the user was created but the profile wasn't.
+                    console.error("Database Insert Error:", dbError.message);
+                    alert("Auth successful, but profile creation failed: " + dbError.message);
+                } else {
+                    alert("Registration Successful! Now proceeding to license image upload.");
+                    window.location.href = "verification-upload.html";
+                }
             }
 
         } catch (err) {
@@ -148,7 +162,6 @@
     document.getElementById('backHome').onclick = () => window.location.href = '../index.html';
     document.getElementById('backPrev').onclick = () => window.history.back();
 </script>
-  
 </body>
 
 </html>
