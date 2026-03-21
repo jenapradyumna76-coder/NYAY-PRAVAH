@@ -107,25 +107,22 @@
     registrationForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        // Get all form values
         const fullName = document.getElementById('judge-full-name').value;
         const email = document.getElementById('judge-email').value;
         const password = document.getElementById('judge-password').value;
         const confirmPassword = document.getElementById('judge-confirm-password').value;
         const licenseNo = document.getElementById('judge-license-no').value;
 
-        // Basic validation
         if (password !== confirmPassword) {
             alert("Passwords do not match!");
             return;
         }
 
-        // Visual feedback for the user
         verifyBtn.innerText = "Processing...";
         verifyBtn.disabled = true;
 
         try {
-            // --- STEP 1: AUTHENTICATION (The Login Account) ---
+            // --- STEP 1: AUTHENTICATION ---
             const { data, error: authError } = await supabaseClient.auth.signUp({
                 email: email,
                 password: password,
@@ -141,22 +138,27 @@
             if (authError) throw authError;
 
             if (data.user) {
-                // --- STEP 2: DATABASE (The 'judges_profile' Table) ---
+                // --- STEP 2: FIX THE DELAY ERROR ---
+                // We wait for 1 second to let Supabase internal tables sync up
+                await new Promise(resolve => setTimeout(resolve, 1000));
+
+                // --- STEP 3: DATABASE INSERT ---
                 const { error: dbError } = await supabaseClient
-                    .from('judges_profile') // Your newly created table
+                    .from('judges_profile')
                     .insert([
                         { 
-                            id: data.user.id,        // Links the Auth ID to the table
+                            id: data.user.id,        
                             full_name: fullName, 
                             email: email, 
                             license_no: licenseNo,
-                            is_verified: false       // Default status
+                            is_verified: false       
                         }
                     ]);
 
                 if (dbError) {
                     console.error("Database Error:", dbError.message);
-                    alert("Account created, but database failed: " + dbError.message);
+                    // If this fails, the user exists in Auth but not the table.
+                    alert("Account created, but database sync failed: " + dbError.message);
                 } else {
                     alert("Registration Successful! Redirecting to Licence Upload...");
                     window.location.href = "verification-upload.html";
@@ -172,7 +174,6 @@
         }
     });
 
-    // Navigation buttons
     document.getElementById('backHome').onclick = () => window.location.href = '../index.html';
     document.getElementById('backPrev').onclick = () => window.history.back();
 </script>
