@@ -95,60 +95,60 @@
     </main>
 
     <script>
-       
-        const SUPABASE_URL = https://shotgiqungofuoquwpzw.supabase.co;
-        const SUPABASE_ANON_KEY = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNob3RnaXF1bmdvZnVvcXV3cHp3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQwMzQ3ODcsImV4cCI6MjA4OTYxMDc4N30.iN89Qk8pCF3TxokVQxCPhvbANQQpCTKCAYV5MM8p--M';
-        const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    // 1. Fixed URL (added quotes) and Key (added opening quote)
+    const SUPABASE_URL = 'https://shotgiqungofuoquwpzw.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNob3RnaXF1bmdvZnVvcXV3cHp3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQwMzQ3ODcsImV4cCI6MjA4OTYxMDc4N30.iN89Qk8pCF3TxokVQxCPhvbANQQpCTKCAYV5MM8p--M';
 
-        const registrationForm = document.getElementById('registrationForm');
+    // 2. Corrected initialization (using the global supabase object from the CDN)
+    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-        registrationForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
+    const registrationForm = document.getElementById('registrationForm');
 
-            const fullName = document.getElementById('judge-full-name').value;
-            const email = document.getElementById('judge-email').value;
-            const password = document.getElementById('judge-password').value;
-            const confirmPassword = document.getElementById('judge-confirm-password').value;
-            const licenseNo = document.getElementById('judge-license-no').value;
+    registrationForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
 
-   
-            if (password !== confirmPassword) {
-                alert("Passwords do not match!");
-                return;
-            }
+        const fullName = document.getElementById('judge-full-name').value;
+        const email = document.getElementById('judge-email').value;
+        const password = document.getElementById('judge-password').value;
+        const confirmPassword = document.getElementById('judge-confirm-password').value;
+        const licenseNo = document.getElementById('judge-license-no').value;
 
-            try {
-               
-                const { data, error } = await supabase.auth.signUp({
-                    email: email,
-                    password: password,
-                    options: {
-                        data: {
-                            full_name: fullName,
-                            license_no: licenseNo,
-                            role: 'judge'
-                        }
+        if (password !== confirmPassword) {
+            alert("Passwords do not match!");
+            return;
+        }
+
+        try {
+            // 3. Using the corrected client name
+            const { data, error } = await supabaseClient.auth.signUp({
+                email: email,
+                password: password,
+                options: {
+                    data: {
+                        full_name: fullName,
+                        license_no: licenseNo,
+                        role: 'judge'
                     }
-                });
-
-                if (error) throw error;
-
-                if (data.user) {
-                    alert("Account registered successfully! Now proceeding to license image upload.");
-                    // Redirect to your second webpage for image upload
-                    window.location.href = "verification-upload.html";
                 }
+            });
 
-            } catch (err) {
-                alert("Error: " + err.message);
-                console.error(err);
+            if (error) throw error;
+
+            if (data.user) {
+                alert("Account registered successfully! Now proceeding to license image upload.");
+                window.location.href = "verification-upload.html";
             }
-        });
 
-        
-        document.getElementById('backHome').onclick = () => window.location.href = '../index.html';
-        document.getElementById('backPrev').onclick = () => window.history.back();
-    </script>
+        } catch (err) {
+            alert("Error: " + err.message);
+            console.error(err);
+        }
+    });
+
+    document.getElementById('backHome').onclick = () => window.location.href = '../index.html';
+    document.getElementById('backPrev').onclick = () => window.history.back();
+</script>
+  
 </body>
 
 </html>
