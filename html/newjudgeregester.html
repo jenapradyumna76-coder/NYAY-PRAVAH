@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Judge Verification - Nav Pravah</title>
     <link rel="stylesheet" href="../styles/login.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
@@ -24,7 +25,7 @@
                 <h1 class="auth-title">Judge New User Verification</h1>
                 <p class="auth-subtitle">Complete your profile to continue with license verification.</p>
 
-                <form class="verification-form" data-role="judge">
+                <form id="registrationForm" class="verification-form" data-role="judge">
                     <label class="auth-label" for="judge-full-name">Name </label>
                     <input class="auth-input" id="judge-full-name" name="fullName" type="text" required>
 
@@ -42,12 +43,12 @@
                     <label class="auth-label" for="judge-license-no">Enter Your Licence No</label>
                     <input class="auth-input" id="judge-license-no" name="licenseNo" type="text" required>
 
-                    <button class="auth-submit judge-theme verify-license-btn" type="button">Verify Your Licence To
+                    <button id="verifyBtn" class="auth-submit judge-theme verify-license-btn" type="submit">Verify Your Licence To
                         Continue</button>
 
                     <div class="flow-actions">
-                        <button class="secondary-btn back-home-btn" type="button">Back To Home</button>
-                        <button class="secondary-btn back-previous-btn" type="button">Back To Previous</button>
+                        <button id="backHome" class="secondary-btn back-home-btn" type="button">Back To Home</button>
+                        <button id="backPrev" class="secondary-btn back-previous-btn" type="button">Back To Previous</button>
                     </div>
                 </form>
             </div>
@@ -93,7 +94,61 @@
         </footer>
     </main>
 
-    <script src="../scripts/auth.js"></script>
+    <script>
+       
+        const SUPABASE_URL = 'YOUR_SUPABASE_URL';
+        const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+        const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        const registrationForm = document.getElementById('registrationForm');
+
+        registrationForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const fullName = document.getElementById('judge-full-name').value;
+            const email = document.getElementById('judge-email').value;
+            const password = document.getElementById('judge-password').value;
+            const confirmPassword = document.getElementById('judge-confirm-password').value;
+            const licenseNo = document.getElementById('judge-license-no').value;
+
+   
+            if (password !== confirmPassword) {
+                alert("Passwords do not match!");
+                return;
+            }
+
+            try {
+               
+                const { data, error } = await supabase.auth.signUp({
+                    email: email,
+                    password: password,
+                    options: {
+                        data: {
+                            full_name: fullName,
+                            license_no: licenseNo,
+                            role: 'judge'
+                        }
+                    }
+                });
+
+                if (error) throw error;
+
+                if (data.user) {
+                    alert("Account registered successfully! Now proceeding to license image upload.");
+                    // Redirect to your second webpage for image upload
+                    window.location.href = "verification-upload.html";
+                }
+
+            } catch (err) {
+                alert("Error: " + err.message);
+                console.error(err);
+            }
+        });
+
+        
+        document.getElementById('backHome').onclick = () => window.location.href = '../index.html';
+        document.getElementById('backPrev').onclick = () => window.history.back();
+    </script>
 </body>
 
 </html>
