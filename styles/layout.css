@@ -718,7 +718,7 @@ main {
 
 /* [Behavior] On scroll, lock navbar to fixed blue for clear sticky state */
 .nav-scrolled {
-    background-color: #007BFF !important;
+    background-color: #05090a !important;
     box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
     transition: all 0.4s ease-in-out;
 }

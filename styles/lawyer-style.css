@@ -1,0 +1,293 @@
+/* --- 1. Global Reset & Variables --- */
+:root {
+    --sidebar-width: 260px;
+    --sidebar-bg: #1a1c23;
+    --main-bg: #f4f7fa;
+    --primary: #2563eb;
+    --danger: #dc2626;
+    --success: #16a34a;
+    --warning: #e67e22;
+    --text-main: #374151;
+    --border-color: #e5e7eb;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    background: var(--main-bg);
+    color: var(--text-main);
+    display: flex;
+    min-height: 100vh;
+    overflow-x: hidden; /* Prevents horizontal scroll */
+}
+
+/* --- 2. Sidebar (Fixed to Left) --- */
+.sidebar {
+    width: var(--sidebar-width);
+    background: var(--sidebar-bg);
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 40px;
+    color: #4488ff;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.menu a {
+    color: #9ca3af;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 15px;
+    border-radius: 8px;
+    transition: 0.3s ease;
+    width: 100%;
+}
+
+.menu a.active, .menu a:hover {
+    background: #2d2f39;
+    color: white;
+}
+
+.user-profile {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-top: 1px solid #2d2f39;
+    padding-top: 20px;
+}
+
+.avatar {
+    width: 35px;
+    height: 35px;
+    background: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+/* --- 3. Main Content (Pushed Right) --- */
+.main-content {
+    flex: 1;
+    margin-left: var(--sidebar-width); /* FIX: Prevents Sidebar Overlap */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Top Bar (Search + Compliance Status) */
+.top-bar {
+    padding: 15px 30px;
+    background: white;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 500;
+}
+
+.search-box {
+    background: #f3f4f6;
+    padding: 8px 18px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    width: 350px;
+}
+
+.search-box input {
+    border: none;
+    background: transparent;
+    margin-left: 10px;
+    outline: none;
+    width: 100%;
+    font-size: 14px;
+}
+
+.live-status {
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pulse {
+    width: 8px;
+    height: 8px;
+    background: var(--success);
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 0 rgba(22, 163, 74, 0.4);
+    animation: pulse-animation 2s infinite;
+}
+
+@keyframes pulse-animation {
+    0% { box-shadow: 0 0 0 0px rgba(22, 163, 74, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(22, 163, 74, 0); }
+    100% { box-shadow: 0 0 0 0px rgba(22, 163, 74, 0); }
+}
+
+/* --- 4. Dashboard Grid & Cards --- */
+.dashboard-header {
+    padding: 30px 30px 10px 30px;
+}
+
+.case-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px;
+    padding: 20px 30px;
+}
+
+/* Lawyer Specific Card Styles */
+.lawyer-card {
+    background: #fff;
+    border: 1px solid var(--border-color);
+    border-top: 5px solid var(--sidebar-bg);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+    transition: transform 0.2s;
+}
+
+.lawyer-card:hover {
+    transform: translateY(-4px);
+}
+
+.text-success { color: var(--success); font-weight: bold; }
+.text-danger { color: var(--danger); font-weight: bold; }
+
+.adj-info {
+    margin: 15px 0;
+    padding: 12px;
+    background: #f8f9fa;
+    border-radius: 6px;
+}
+
+.limit-near { 
+    border: 1px solid var(--warning); 
+    background: #fff9f0; 
+}
+
+/* --- 5. Buttons & Controls --- */
+.main-btn {
+    width: 100%;
+    background: var(--sidebar-bg);
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.2s;
+}
+
+.main-btn:hover {
+    background: #2d2f39;
+}
+
+.adj-btn {
+    background: #9ca3af;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.adj-btn:disabled {
+    background: #e5e7eb;
+    color: #9ca3af;
+    cursor: not-allowed;
+}
+
+/* --- 6. Judge Dashboard Specifics --- */
+.split-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    padding: 20px 30px;
+}
+
+.pane {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    min-height: 400px;
+}
+
+.pane-title {
+    padding: 15px 20px;
+    font-weight: bold;
+    border-bottom: 1px solid var(--border-color);
+    background: #fafafa;
+    border-radius: 12px 12px 0 0;
+}
+
+/* --- 7. Modals & Notifications --- */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    backdrop-filter: blur(2px);
+}
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    width: 450px;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.hidden { display: none !important; }
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 22px;
+    cursor: pointer;
+    color: #999;
+}

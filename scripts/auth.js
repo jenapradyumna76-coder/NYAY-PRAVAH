@@ -2,6 +2,9 @@
 
 // Function to verify user before showing content
 document.addEventListener('DOMContentLoaded', () => {
+
+    const inHtmlFolder = window.location.pathname.toLowerCase().includes('/html/');
+    const dashboardPath = inHtmlFolder ? 'index.html' : 'html/index.html';
     const langOptions = document.querySelectorAll('.lang-option');
     const displayBtn = document.getElementById('current-lang-display');
 
@@ -30,6 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
 
     const currentPage = window.location.pathname.toLowerCase();
+    const inHtmlFolder = currentPage.includes('/html/');
+    const dashboardPath = inHtmlFolder ? 'index.html' : 'html/index.html';
     const isPortalLoginPage = currentPage.includes('judgelogin.html') || currentPage.includes('lawerlogin.html');
     if (isPortalLoginPage) {
         alert('You have switched to the login page. Press OK to continue and fill your details.');
@@ -39,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const homeLoginBtn = document.querySelector('.login-btn');
     if (homeLoginBtn) {
         homeLoginBtn.addEventListener('click', () => {
-            window.location.href = 'login.html';
+            window.location.href = dashboardPath;
         });
     }
 
@@ -77,8 +82,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
+            const lowerRole = role.toLowerCase();
+            let roleDashboardPath = dashboardPath;
+            if (lowerRole.includes('judge')) {
+                roleDashboardPath = 'judge-dashboard.html';
+            } else if (lowerRole.includes('lawyer')) {
+                roleDashboardPath = 'lawyer-dashboard.html';
+            }
+
             console.log(`${role} login attempt: ${email}`);
-            alert(`${role} login successful.`);
+            alert(`${role} login successful. Redirecting to dashboard.`);
+            window.location.href = roleDashboardPath;
         });
     }
 
@@ -136,8 +150,8 @@ document.addEventListener('DOMContentLoaded', () => {
         uploadVerificationBtn.addEventListener('click', (event) => {
             event.preventDefault();
 
-            const front = document.querySelector('input[name="frontProof"]');
-            const back = document.querySelector('input[name="backProof"]');
+            const front = document.querySelector('input[name="frontProof"]') || document.getElementById('judge-front-proof');
+            const back = document.querySelector('input[name="backProof"]') || document.getElementById('judge-back-proof');
             if (!front || !back || !front.files.length || !back.files.length) {
                 alert('Please upload both front and back images for verification.');
                 return;
@@ -148,22 +162,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            const homePath = '../html/index.html';
+            let redirectPath = dashboardPath;
+            if (currentPage.includes('judgeverification.html')) {
+                redirectPath = 'judge-dashboard.html';
+            } else if (currentPage.includes('lawerverification.html')) {
+                redirectPath = 'lawyer-dashboard.html';
+            }
+
             if (window.opener && !window.opener.closed) {
-                window.opener.location.href = homePath;
+                window.opener.location.href = redirectPath;
                 window.close();
                 return;
             }
 
-            window.location.href = homePath;
+            window.location.href = redirectPath;
         });
     }
 
     const backHomeBtn = document.querySelector('.back-home-btn');
     if (backHomeBtn) {
         backHomeBtn.addEventListener('click', () => {
-            const inHtmlFolder = window.location.pathname.toLowerCase().includes('/html/');
-            window.location.href = inHtmlFolder ? 'index.html' : '../html/index.html';
+            window.location.href = dashboardPath;
         });
     }
 
@@ -180,8 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            const inHtmlFolder = window.location.pathname.toLowerCase().includes('/html/');
-            window.location.href = inHtmlFolder ? 'index.html' : '../html/index.html';
+            window.location.href = dashboardPath;
         });
     }
 });

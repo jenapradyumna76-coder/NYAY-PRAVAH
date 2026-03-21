@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NYAY PRAVAH | Judicial Command Center</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <aside class="sidebar">
+        <div class="logo">
+            <i class="fas fa-gavel"></i>
+            <span>NYAY PRAVAH</span>
+        </div>
+        <nav class="menu">
+            <a href="#" class="active"><i class="fas fa-columns"></i> Dashboard</a>
+            <a href="#"><i class="fas fa-folder-open"></i> All Cases</a>
+            <a href="#"><i class="fas fa-clock"></i> Pending Stays</a>
+            <a href="#"><i class="fas fa-chart-line"></i> Analytics</a>
+            <div class="divider"></div>
+            <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </nav>
+        <div class="user-profile">
+            <div class="avatar">HH</div>
+            <div class="info">
+                <strong>Hon. Judge</strong>
+                <span>Courtroom 04</span>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="top-bar">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search Case ID or Party Name...">
+            </div>
+            <div class="header-actions">
+                <div class="live-status"><span class="pulse"></span> System Live</div>
+                <button class="refresh-btn" onclick="fetchDashboardData()">
+                    <i class="fas fa-sync-alt"></i> Refresh
+                </button>
+            </div>
+        </header>
+
+        <section class="dashboard-header">
+            <h2>Daily Cause List Balance</h2>
+            <div class="balance-meter">
+                <div class="track">
+                    <div class="segment backlog-seg" style="width: 50%;">4 BACKLOG</div>
+                    <div class="segment fresh-seg" style="width: 50%;">4 FRESH</div>
+                </div>
+            </div>
+        </section>
+
+        <div class="split-grid">
+            <div class="pane backlog-pane">
+                <div class="pane-title">
+                    <i class="fas fa-exclamation-triangle"></i> Priority Backlog
+                </div>
+                <div id="backlog-list" class="case-list">
+                </div>
+            </div>
+
+            <div class="pane fresh-pane">
+                <div class="pane-title">
+                    <i class="fas fa-leaf"></i> Fresh Filings
+                </div>
+                <div id="fresh-list" class="case-list">
+                </div>
+            </div>
+        </div>
+
+        <footer class="pagination-footer">
+            <button id="prevBtn" class="nav-btn"><i class="fas fa-chevron-left"></i></button>
+            <span id="pageCounter">Page 1 of 12</span>
+            <button id="nextBtn" class="nav-btn"><i class="fas fa-chevron-right"></i></button>
+        </footer>
+    </main>
+
+    <div id="toast" class="toast hidden">
+        <i class="fas fa-bell"></i>
+        <span>Evidence Uploaded for Case #204</span>
+        <button onclick="location.reload()">Update</button>
+    </div>
+    <script src="../scripts/dashboard.js"></script>
+    <script>
+        const logoutBtn = document.getElementById('logoutBtn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', (event) => {
+                event.preventDefault();
+                const shouldLogout = confirm('Do you want to logout?');
+                if (shouldLogout) {
+                    window.location.href = 'index.html';
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
