@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nav Pravah - Details</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(180deg, #f0f7ff 0%, #ffffff 70%);
+            color: #1f3552;
+        }
+
+        .details-wrap {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .details-card {
+            background: #ffffff;
+            border: 1px solid rgba(44, 104, 176, 0.25);
+            border-radius: 16px;
+            box-shadow: 0 12px 26px rgba(23, 74, 126, 0.14);
+            padding: 1.25rem;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #e6f1ff;
+            color: #174a7e;
+            border-radius: 999px;
+            padding: 0.35rem 0.75rem;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.8rem;
+        }
+
+        h1 {
+            margin: 0 0 0.65rem;
+            color: #102d52;
+            font-size: 1.65rem;
+        }
+
+        p {
+            margin: 0 0 0.95rem;
+            line-height: 1.7;
+            font-size: 0.98rem;
+        }
+
+        .panel {
+            margin-top: 1rem;
+            background: #f7fbff;
+            border: 1px solid rgba(57, 120, 194, 0.2);
+            border-radius: 12px;
+            padding: 0.95rem;
+        }
+
+        .panel h2 {
+            margin: 0 0 0.55rem;
+            font-size: 1.05rem;
+            color: #143a6c;
+        }
+
+        ul {
+            margin: 0;
+            padding-left: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 1.25rem;
+            color: #1b61ac;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="details-wrap">
+        <article class="details-card">
+            <span class="tag">NAV PRAVAH DETAILS</span>
+            <h1 id="topic-title">Footer Detail</h1>
+            <p id="topic-intro">Placeholder content for the selected topic.</p>
+
+            <section class="panel">
+                <h2>Overview</h2>
+                <p id="topic-overview">Overview will appear here.</p>
+            </section>
+
+            <section class="panel">
+                <h2>Key Points</h2>
+                <ul id="topic-points"></ul>
+            </section>
+
+            <a class="back-link" href="index.html">Back to Home</a>
+        </article>
+    </main>
+
+    <script>
+        const contentMap = {
+            "ai-case-search": {
+                title: "AI Case Search",
+                intro: "Use intelligent legal search to quickly find relevant cases, judgments, and precedents.",
+                overview: "This module helps users explore legal records using natural language and structured filters. It is designed to reduce research time and improve confidence in case discovery.",
+                points: [
+                    "Search by case name, court, date, and legal topic.",
+                    "Smart ranking highlights the most relevant documents first.",
+                    "Supports quick preview and detailed case-view navigation."
+                ]
+            },
+            "faq-user-guides": {
+                title: "FAQ / User Guides",
+                intro: "A support hub for common questions and step-by-step guidance.",
+                overview: "Users can find practical answers for onboarding, account use, and core platform workflows. This section is intended to reduce support dependency.",
+                points: [
+                    "Beginner-friendly guidance for first-time users.",
+                    "Troubleshooting steps for common login and portal issues.",
+                    "Guides organized by user type and feature area."
+                ]
+            },
+            "service-status": {
+                title: "Service Status",
+                intro: "Track availability and health of key platform services.",
+                overview: "This page communicates uptime, maintenance windows, and incident updates to keep users informed in real time.",
+                points: [
+                    "Current operational status of major modules.",
+                    "Scheduled maintenance notifications.",
+                    "Past incident summaries and resolution notes."
+                ]
+            },
+            "developer-api": {
+                title: "Developer API",
+                intro: "Integration reference for teams connecting with platform services.",
+                overview: "Developers can access endpoint usage details, authentication flow, and payload structures to build secure integrations.",
+                points: [
+                    "Authentication and token-based access flow.",
+                    "Sample request and response formats.",
+                    "Versioning guidance and integration best practices."
+                ]
+            },
+            "privacy-policy": {
+                title: "Privacy Policy",
+                intro: "Understand what user data is collected and how it is protected.",
+                overview: "This policy outlines data processing standards, retention controls, and user rights across the platform.",
+                points: [
+                    "Clear explanation of collected data categories.",
+                    "Purpose-based use of information with safeguards.",
+                    "User rights for access, correction, and deletion requests."
+                ]
+            },
+            "data-handling-protocol": {
+                title: "Data Handling Protocol",
+                intro: "Operational standards for secure storage and transfer of legal data.",
+                overview: "This section defines how data is validated, stored, encrypted, and audited to maintain trust and compliance.",
+                points: [
+                    "Secure access controls for sensitive records.",
+                    "Encryption practices for data in transit and at rest.",
+                    "Audit logging for accountability and traceability."
+                ]
+            },
+            "feedback-portal": {
+                title: "Feedback Portal",
+                intro: "Share product feedback, ideas, and issue reports with the team.",
+                overview: "Users can submit structured suggestions to help prioritize improvements and feature enhancements.",
+                points: [
+                    "Categorized feedback for faster triage.",
+                    "Status tracking for submitted requests.",
+                    "Opportunity to suggest usability and feature improvements."
+                ]
+            },
+            "accessibility": {
+                title: "Accessibility",
+                intro: "Inclusive design commitment for users with diverse accessibility needs.",
+                overview: "This area highlights usability standards and support practices adopted to ensure equitable access for all users.",
+                points: [
+                    "Keyboard-friendly navigation support.",
+                    "Screen-reader compatible labels and structure.",
+                    "Ongoing accessibility reviews for continuous improvement."
+                ]
+            },
+            "about-nav-pravah": {
+                title: "About Nav Pravah",
+                intro: "Nav Pravah is built to simplify legal processes through digital-first workflows.",
+                overview: "The platform combines search, guidance, and collaboration tools to support citizens, lawyers, and judges with practical legal-tech solutions.",
+                points: [
+                    "Focused on reducing complexity in legal navigation.",
+                    "Combines AI-assisted discovery with human-centered design.",
+                    "Built for speed, transparency, and accessibility."
+                ]
+            },
+            "team-code-dazzlers": {
+                title: "The Team (Code Dazzlers)",
+                intro: "Meet the contributors behind the Nav Pravah vision.",
+                overview: "Code Dazzlers is a collaborative team working across product strategy, design, and engineering to deliver meaningful legal-tech outcomes.",
+                points: [
+                    "Cross-functional collaboration model.",
+                    "Rapid iteration with user-centric validation.",
+                    "Strong focus on reliability and impact."
+                ]
+            },
+            "technology-stack": {
+                title: "Technology Stack",
+                intro: "A modern web stack powering fast and scalable legal workflows.",
+                overview: "The platform architecture supports modular UI, maintainable scripts, and secure service integration for long-term growth.",
+                points: [
+                    "Frontend-first implementation for responsiveness.",
+                    "Modular scripts for easier feature extension.",
+                    "Scalable structure for future AI and API expansion."
+                ]
+            },
+            "mherm-hackathon-26": {
+                title: "MHERM Hackathon '26",
+                intro: "Project context and showcase under MHERM Hackathon 2026.",
+                overview: "This section highlights the event alignment, project goals, and problem-solving focus demonstrated in the hackathon journey.",
+                points: [
+                    "Built around real legal workflow challenges.",
+                    "Demonstrates practical innovation under time constraints.",
+                    "Designed for future development beyond hackathon scope."
+                ]
+            },
+            "website-policies": {
+                title: "Website Policies",
+                intro: "A summary of terms, usage standards, and governance rules.",
+                overview: "These policies help maintain a safe, lawful, and transparent experience for all platform users.",
+                points: [
+                    "Acceptable use and conduct guidelines.",
+                    "Policy update and change communication process.",
+                    "Reference to legal and compliance obligations."
+                ]
+            },
+            "contact-us": {
+                title: "Contact Us",
+                intro: "Reach the team for support, partnerships, or product inquiries.",
+                overview: "This page serves as the primary communication channel for user questions, collaboration requests, and issue escalations.",
+                points: [
+                    "Support channel for user issues and guidance.",
+                    "Dedicated contact path for institutional collaboration.",
+                    "Response workflow for urgent and general requests."
+                ]
+            },
+            "help": {
+                title: "Help",
+                intro: "Get quick assistance for platform usage and troubleshooting.",
+                overview: "The help module connects users with guided steps, quick answers, and escalation options when needed.",
+                points: [
+                    "Step-by-step issue resolution pathways.",
+                    "Quick help by module and user role.",
+                    "Escalation support for unresolved cases."
+                ]
+            },
+            "disclaimer": {
+                title: "Disclaimer",
+                intro: "Important usage clarification and legal notice.",
+                overview: "This notice explains platform limitations and clarifies that guidance provided should be verified through appropriate legal channels where required.",
+                points: [
+                    "Information is provided for support and awareness.",
+                    "Users should confirm critical legal decisions independently.",
+                    "Liability boundaries are defined for platform content usage."
+                ]
+            }
+        };
+
+        const params = new URLSearchParams(window.location.search);
+        const topic = params.get("topic") || "about-nav-pravah";
+        const content = contentMap[topic] || contentMap["about-nav-pravah"];
+
+        document.getElementById("topic-title").textContent = content.title;
+        document.getElementById("topic-intro").textContent = content.intro;
+        document.getElementById("topic-overview").textContent = content.overview;
+
+        const list = document.getElementById("topic-points");
+        content.points.forEach((point) => {
+            const item = document.createElement("li");
+            item.textContent = point;
+            list.appendChild(item);
+        });
+    </script>
+</body>
+
+</html>

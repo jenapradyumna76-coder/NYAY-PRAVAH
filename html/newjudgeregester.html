@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Judge Verification - Nav Pravah</title>
+    <link rel="stylesheet" href="../styles/login.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body>
+    <main>
+        <div class="tagsection">
+            <div id="tag">
+                <p>NAV PRAVHA</p>
+            </div>
+            <div id="tagline">
+                <p>न्याय का प्रवाह</p>
+            </div>
+        </div>
+
+        <section class="auth-shell">
+            <div class="auth-card register-card">
+                <h1 class="auth-title">Judge New User Verification</h1>
+                <p class="auth-subtitle">Complete your profile to continue with license verification.</p>
+
+                <form id="registrationForm" class="verification-form" data-role="judge">
+                    <label class="auth-label" for="judge-full-name">Name </label>
+                    <input class="auth-input" id="judge-full-name" name="fullName" type="text" required>
+
+                    <label class="auth-label" for="judge-email">Gmail</label>
+                    <input class="auth-input" id="judge-email" name="email" type="email" placeholder="name@gmail.com"
+                        required>
+
+                    <label class="auth-label" for="judge-password">Password</label>
+                    <input class="auth-input" id="judge-password" name="password" type="password" required>
+
+                    <label class="auth-label" for="judge-confirm-password">Confirm Password</label>
+                    <input class="auth-input" id="judge-confirm-password" name="confirmPassword" type="password"
+                        required>
+
+                    <label class="auth-label" for="judge-license-no">Enter Your Licence No</label>
+                    <input class="auth-input" id="judge-license-no" name="licenseNo" type="text" required>
+
+                    <button id="verifyBtn" class="auth-submit judge-theme verify-license-btn" type="submit">Verify Your Licence To
+                        Continue</button>
+
+                    <div class="flow-actions">
+                        <button id="backHome" class="secondary-btn back-home-btn" type="button">Back To Home</button>
+                        <button id="backPrev" class="secondary-btn back-previous-btn" type="button">Back To Previous</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <footer class="np-footer">
+            <div class="footer-primary-links">
+                <div class="footer-grid">
+                    <div class="footer-col">
+                        <ul>
+                            <li><a href="#">AI Case Search</a></li>
+                            <li><a href="#">FAQ / User Guides</a></li>
+                            <li><a href="#">Service Status</a></li>
+                            <li><a href="#">Developer API</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <ul>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Data Handling Protocol</a></li>
+                            <li><a href="#">Feedback Portal</a></li>
+                            <li><a href="#">Accessibility</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <ul>
+                            <li><a href="#">About Nav Pravah</a></li>
+                            <li><a href="#">The Team (Code Dazzlers)</a></li>
+                            <li><a href="#">Technology Stack</a></li>
+                            <li><a href="#">MHERM Hackathon '26</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-secondary-info">
+                <div class="policy-links">
+                    <a href="#">Website Policies</a> |
+                    <a href="#">Contact Us</a> |
+                    <a href="#">Help</a> |
+                    <a href="#">Disclaimer</a>
+                </div>
+            </div>
+        </footer>
+    </main>
+<script>
+    // 1. Supabase Configuration
+    const SUPABASE_URL = 'https://shotgiqungofuoquwpzw.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNob3RnaXF1bmdvZnVvcXV3cHp3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQwMzQ3ODcsImV4cCI6MjA4OTYxMDc4N30.iN89Qk8pCF3TxokVQxCPhvbANQQpCTKCAYV5MM8p--M';
+
+    // 2. Initialize the Supabase Client
+    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    const registrationForm = document.getElementById('registrationForm');
+    const verifyBtn = document.getElementById('verifyBtn');
+
+    registrationForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const fullName = document.getElementById('judge-full-name').value;
+        const email = document.getElementById('judge-email').value;
+        const password = document.getElementById('judge-password').value;
+        const confirmPassword = document.getElementById('judge-confirm-password').value;
+        const licenseNo = document.getElementById('judge-license-no').value;
+
+        if (password !== confirmPassword) {
+            alert("Passwords do not match!");
+            return;
+        }
+
+        verifyBtn.innerText = "Processing...";
+        verifyBtn.disabled = true;
+
+        try {
+            // --- STEP 1: AUTHENTICATION ---
+            const { data, error: authError } = await supabaseClient.auth.signUp({
+                email: email,
+                password: password,
+                options: {
+                    data: {
+                        full_name: fullName,
+                        license_no: licenseNo,
+                        role: 'judge'
+                    }
+                }
+            });
+
+            if (authError) throw authError;
+
+            if (data.user) {
+                // --- STEP 2: FIX THE DELAY ERROR ---
+                // We wait for 1 second to let Supabase internal tables sync up
+                await new Promise(resolve => setTimeout(resolve, 1000));
+
+                // --- STEP 3: DATABASE INSERT ---
+                const { error: dbError } = await supabaseClient
+                    .from('judges_profile')
+                    .insert([
+                        { 
+                            id: data.user.id,        
+                            full_name: fullName, 
+                            email: email, 
+                            license_no: licenseNo,
+                            is_verified: false       
+                        }
+                    ]);
+
+                if (dbError) {
+                    console.error("Database Error:", dbError.message);
+                    // If this fails, the user exists in Auth but not the table.
+                    alert("Account created, but database sync failed: " + dbError.message);
+                } else {
+                    alert("Registration Successful! Redirecting to Licence Upload...");
+                    window.location.href = "verification-upload.html";
+                }
+            }
+
+        } catch (err) {
+            alert("Error: " + err.message);
+            console.error("Critical Error:", err);
+        } finally {
+            verifyBtn.innerText = "Verify Your Licence To Continue";
+            verifyBtn.disabled = false;
+        }
+    });
+
+    document.getElementById('backHome').onclick = () => window.location.href = '../index.html';
+    document.getElementById('backPrev').onclick = () => window.history.back();
+</script>
+</body>
+
+</html>

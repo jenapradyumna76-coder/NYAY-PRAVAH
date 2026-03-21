@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hackathon Project.com</title>
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/layout.css">
+    <link rel="stylesheet" href="../styles/components.css">
+
+    <head>
+
+    </head>
+</head>
+
+<body>
+    <main>
+        <!-- [Section] Header Row 1: Brand name + Hindi tagline + logo -->
+
+        <div class="tagsection">
+            <div id="tag">
+                <p>NAV PRAVHA</p>
+            </div>
+            <div id="tagline">
+                <p>न्याय का प्रवाह</p>
+            </div>
+        </div>
+        <div class="logo-section">
+            <img src="../IMG1.jpeg" alt="Logo" class="logo-image">
+        </div>
+
+
+
+        <!-- [Section] Header Row 2: Primary navigation and role actions -->
+        <nav class="navbar">
+            <ul class="nav-links">
+                <li><a href="#" class="nav-link">Home</a></li>
+                <div class="nav-group">
+                    <a href="#" class="main-link">About</a>
+                    <div class="tertiary-menu">
+                        <a href="#about-content-panel" class="js-about-link" data-about="mission">Our Mission</a>
+                        <a href="#about-content-panel" class="js-about-link" data-about="team">The Team</a>
+                        <a href="#about-content-panel" class="js-about-link" data-about="tech">Tech Stack</a>
+                        <a href="#about-content-panel" class="js-about-link" data-about="roadmap">Roadmap</a>
+                        <a href="#about-content-panel" class="js-about-link" data-about="contact">Contact</a>
+                    </div>
+                </div>
+
+                <div class="nav-group">
+                    <a href="#" class="main-link">Services</a>
+                    <div class="tertiary-menu">
+                        <a href="#services-content-panel" class="js-service-link" data-service="case-search">Case
+                            Search</a>
+                        <a href="#services-content-panel" class="js-service-link" data-service="lawyer-portal">Lawyer
+                            Portal</a>
+                        <a href="#services-content-panel" class="js-service-link" data-service="legal-aid">Legal
+                            Aid</a>
+                        <a href="#services-content-panel" class="js-service-link" data-service="document-vault">Document
+                            Vault</a>
+                        <a href="#services-content-panel" class="js-service-link" data-service="help-center">Help
+                            Center</a>
+                    </div>
+                </div>
+
+                <div class="nav-group">
+                    <button class="lang-btn main-link">EN</button>
+                    <div class="tertiary-menu">
+                        <a href="#">English</a>
+                        <a href="#">Hindi</a>
+                        <a href="#">Odia</a>
+                        <a href="#">Telugu</a>
+                    </div>
+                </div>
+            </ul>
+
+            <div class="nav-actions">
+                <!-- [Behavior] Role-based quick access buttons -->
+                <button class="judge-btn" id="judge-portal-btn">Judge</button>
+                <button class="lawyer-btn" id="lawyer-portal-btn">Lawyer</button>
+            </div>
+        </nav>
+
+
+        <!-- [Section] Header Row 3: Hero carousel starts after the full header stack -->
+        <section class="hero-carousel">
+            <div class="carousel-container">
+                <!-- [Behavior] 5 slides total; animation loops continuously via CSS keyframes -->
+                <div class="carousel-slide">
+                    <img src="../IMG1.jpeg" alt="">
+                    <img src="../IMG1.jpeg" alt="">
+                    <img src="../IMG1.jpeg" alt="">
+                    <img src="../IMG1.jpeg" alt="">
+                    <img src="../IMG1.jpeg" alt="">
+                </div>
+            </div>
+        </section>
+        <section class="services-section" aria-labelledby="services-heading">
+            <div class="services-shell">
+                <h2 class="services-heading" id="services-heading">Services</h2>
+                <!-- [Behavior] Topic pills and navbar dropdown links update the same panel -->
+                <div class="section-topic-controls" role="tablist" aria-label="Service topics">
+                    <button class="section-topic-btn is-active js-service-topic" data-service="case-search"
+                        type="button">Case Search</button>
+                    <button class="section-topic-btn js-service-topic" data-service="lawyer-portal" type="button">Lawyer
+                        Portal</button>
+                    <button class="section-topic-btn js-service-topic" data-service="legal-aid" type="button">Legal
+                        Aid</button>
+                    <button class="section-topic-btn js-service-topic" data-service="document-vault"
+                        type="button">Document Vault</button>
+                    <button class="section-topic-btn js-service-topic" data-service="help-center" type="button">Help
+                        Center</button>
+                </div>
+                <!-- [Section] Static service summary cards -->
+                <div class="services-grid">
+                    <article class="service-card">
+                        <h3 class="service-title">AI Case Search</h3>
+                        <p class="service-text">Find judgments, precedents, and related case history quickly with
+                            intelligent legal search.</p>
+                    </article>
+                    <article class="service-card">
+                        <h3 class="service-title">Lawyer Portal</h3>
+                        <p class="service-text">Manage client matters, track filings, and organize legal documents in
+                            one secure workspace.</p>
+                    </article>
+                    <article class="service-card">
+                        <h3 class="service-title">Judge Portal</h3>
+                        <p class="service-text">Enable judges to review case timelines, monitor hearing flow, and
+                            access organized legal records quickly.</p>
+                    </article>
+                </div>
+                <!-- [Behavior] Dynamic service details panel updated by scripts/main.js -->
+                <article class="section-content-panel" id="services-content-panel" aria-live="polite">
+                    <h3 class="section-content-title" id="services-content-title">Case Search</h3>
+                    <p class="section-content-text" id="services-content-text">Placeholder content: Users can search
+                        judgments, statutes, and precedents with filters for court, year, and topic. Replace this text
+                        with your final service details later.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="app-description-section" aria-labelledby="app-description-heading">
+            <div class="app-description-shell">
+                <h2 class="app-description-heading" id="app-description-heading">Description</h2>
+                <p class="app-description-text">
+                    Nav Pravah is an AI-powered legal platform designed to make justice workflows faster, simpler, and
+                    more accessible.
+                    It helps users search cases intelligently, connect with legal support, and manage legal tasks with
+                    clarity.
+                    The platform is built to reduce complexity in legal processes by combining smart search, structured
+                    guidance,
+                    and secure digital tools for judges, lawyers, and citizens.
+                </p>
+                <p class="app-description-text">
+                    Our goal is to accelerate legal decision-making while keeping transparency and usability at the
+                    center.
+                    From case discovery to document organization and legal aid assistance, the app provides one modern
+                    system
+                    where users can track, understand, and act on legal information efficiently.
+                </p>
+            </div>
+        </section>
+
+        <section class="about-us-section" aria-labelledby="about-us-heading">
+            <div class="about-us-shell">
+                <h2 class="about-us-heading" id="about-us-heading">About Us</h2>
+                <p class="about-us-intro">
+                    We are Team Code Dazzlers, building Nav Pravah to transform how justice services are discovered,
+                    understood, and delivered through smart digital tools.
+                </p>
+                <!-- [Behavior] Shared topic UI pattern: button-based tab-like controls -->
+                <div class="section-topic-controls" role="tablist" aria-label="About topics">
+                    <button class="section-topic-btn is-active js-about-topic" data-about="mission" type="button">Our
+                        Mission</button>
+                    <button class="section-topic-btn js-about-topic" data-about="team" type="button">The Team</button>
+                    <button class="section-topic-btn js-about-topic" data-about="tech" type="button">Tech Stack</button>
+                    <button class="section-topic-btn js-about-topic" data-about="roadmap" type="button">Roadmap</button>
+                    <button class="section-topic-btn js-about-topic" data-about="contact" type="button">Contact</button>
+                </div>
+                <!-- [Section] Static about summary cards -->
+                <div class="about-us-grid">
+                    <article class="about-us-card">
+                        <h3 class="about-us-card-title">Our Vision</h3>
+                        <p class="about-us-card-text">
+                            To create a faster and more inclusive legal ecosystem where citizens, lawyers, and judges
+                            can access trusted legal information without friction.
+                        </p>
+                    </article>
+                    <article class="about-us-card">
+                        <h3 class="about-us-card-title">What We Build</h3>
+                        <p class="about-us-card-text">
+                            AI-powered case discovery, lawyer and judge portals, and structured legal workflows that
+                            reduce complexity and improve decision support.
+                        </p>
+                    </article>
+                    <article class="about-us-card">
+                        <h3 class="about-us-card-title">Our Commitment</h3>
+                        <p class="about-us-card-text">
+                            We focus on transparency, usability, and reliability so legal processes become clearer,
+                            quicker, and more accessible to everyone.
+                        </p>
+                    </article>
+                </div>
+                <!-- [Behavior] Dynamic about details panel updated by scripts/main.js -->
+                <article class="section-content-panel" id="about-content-panel" aria-live="polite">
+                    <h3 class="section-content-title" id="about-content-title">Our Mission</h3>
+                    <p class="section-content-text" id="about-content-text">Placeholder content: Our mission is to
+                        simplify legal access through AI-driven workflows and clear guidance for citizens, lawyers, and
+                        judges. Replace this with your final mission text when ready.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="mentor-section" aria-label="Our mentor">
+            <div class="mentor-shell">
+                <h2 class="mentor-heading">Our Mentor</h2>
+                <article class="mentor-layout">
+                    <figure class="mentor-photo-wrap">
+                        <img class="mentor-photo" src="mentorpic.jpeg" alt="Team mentor portrait">
+                    </figure>
+                    <div class="mentor-content">
+                        <h3 class="mentor-name">Dr. Ashis Kumar Dass</h3>
+                        <p class="mentor-role">Technical Mentor &amp; Strategic Advisor</p>
+                        <blockquote class="mentor-quote">
+                            "A distinguished academician and researcher at NIST University, Dr. Ashis Kumar Dass
+                            serves as the primary mentor for the Nav Pravah initiative."
+                        </blockquote>
+                        <p class="mentor-text">
+                            With over 15 years of expertise in Cloud Computing, Blockchain, and System Security, he
+                            provides the foundational guidance necessary for building a transparent and secure digital
+                            judicial ecosystem.
+                        </p>
+                        <p class="mentor-text">
+                            His research-driven approach ensures that our platform adheres to the highest standards of
+                            data integrity and technical excellence, bridging the gap between innovative engineering
+                            and judicial reliability.
+                        </p>
+                    </div>
+                </article>
+            </div>
+        </section>
+        <!-- [Section] Primary informational footer with legal, product, and support links -->
+        <footer class="np-footer">
+            <div class="footer-primary-links">
+                <div class="footer-grid">
+
+                    <div class="footer-col">
+                        <ul>
+                            <li><a href="footer/ai-case-search.html" target="_blank" rel="noopener noreferrer">AI Case
+                                    Search</a></li>
+                            <li><a href="footer/faq-user-guides.html" target="_blank" rel="noopener noreferrer">FAQ /
+                                    User Guides</a></li>
+                            <li><a href="footer/service-status.html" target="_blank" rel="noopener noreferrer">Service
+                                    Status</a></li>
+                            <li><a href="footer/developer-api.html" target="_blank" rel="noopener noreferrer">Developer
+                                    API</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col">
+                        <ul>
+                            <li><a href="footer/privacy-policy.html" target="_blank" rel="noopener noreferrer">Privacy
+                                    Policy</a></li>
+                            <li><a href="footer/data-handling-protocol.html" target="_blank"
+                                    rel="noopener noreferrer">Data Handling Protocol</a></li>
+                            <li><a href="footer/feedback-portal.html" target="_blank" rel="noopener noreferrer">Feedback
+                                    Portal</a></li>
+                            <li><a href="footer/accessibility.html" target="_blank"
+                                    rel="noopener noreferrer">Accessibility</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col">
+                        <ul>
+                            <li><a href="footer/about-nav-pravah.html" target="_blank" rel="noopener noreferrer">About
+                                    Nav Pravah</a></li>
+                            <li><a href="footer/team-code-dazzlers.html" target="_blank" rel="noopener noreferrer">The
+                                    Team (Code Dazzlers)</a></li>
+                            <li><a href="footer/technology-stack.html" target="_blank"
+                                    rel="noopener noreferrer">Technology Stack</a></li>
+                            <li><a href="footer/mherm-hackathon-26.html" target="_blank" rel="noopener noreferrer">MHERM
+                                    Hackathon '26</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-app-download">
+                        <div class="app-card">
+                            <img src="../IMG1.jpeg" alt="Nav Pravah Logo" class="footer-logo">
+                            <p>NAV PRAVAH</p>
+                            <span class="tagline">Justice. Accelerated.</span>
+
+                            <p class="download-text">Download Assistant From</p>
+                            <div class="app-stores">
+                                <img src="../IMG1.jpeg" alt="Get it on Google Play">
+                                <img src="../IMG1.jpeg" alt="Download on the App Store">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-secondary-info">
+                <div class="policy-links">
+                    <a href="footer/website-policies.html" target="_blank" rel="noopener noreferrer">Website
+                        Policies</a> |
+                    <a href="footer/contact-us.html" target="_blank" rel="noopener noreferrer">Contact
+                        Us</a> |
+                    <a href="footer/help.html" target="_blank" rel="noopener noreferrer">Help</a> |
+                    <a href="footer/disclaimer.html" target="_blank" rel="noopener noreferrer">Disclaimer</a>
+                </div>
+
+                <div class="copyright-text">
+                    <p>Content Managed & Maintained by **Code Dazzlers**.</p>
+                    <p>Built for the **MHERM Hackathon 2026**.</p>
+                    <p>Last Data Update: March 19, 2026</p>
+                </div>
+
+                <div class="partner-logos">
+                    <span class="mherm-badge">MHERM '26</span>
+                </div>
+            </div>
+        </footer>
+    </main>
+    <!-- [Note] Framework include kept for future interactive components -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.js"></script>
+    <!-- [Section] App scripts: UI interactions + auth/navigation handlers -->
+    <script src="../scripts/main.js"></script>
+    <script src="../scripts/auth.js"></script>
+    <script>
+
+
+    </script>
+</body>
+
+</html>
