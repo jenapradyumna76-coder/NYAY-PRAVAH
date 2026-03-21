@@ -1,22 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Judge Licence Verification</title>
+    <title>Judge Licence Verification - Nav Pravah</title>
     <link rel="stylesheet" href="../styles/login.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
-
 <body>
     <main>
         <div class="tagsection">
-            <div id="tag">
-                <p>NAV PRAVHA</p>
-            </div>
-            <div id="tagline">
-                <p>न्याय का प्रवाह</p>
-            </div>
+            <div id="tag"><p>NAV PRAVHA</p></div>
+            <div id="tagline"><p>न्याय का प्रवाह</p></div>
         </div>
 
         <section class="auth-shell">
@@ -24,67 +19,99 @@
                 <h1 class="auth-title">Judge Licence Verification</h1>
                 <p class="auth-subtitle">Upload front and back images for licence verification.</p>
 
-                <form class="verification-upload-form">
+                <form class="verification-upload-form" id="uploadForm">
                     <label class="auth-label" for="judge-front-proof">Upload Front Image</label>
-                    <input class="auth-input file-input" id="judge-front-proof" name="frontProof" type="file"
-                        accept="image/*" required>
+                    <input class="auth-input file-input" id="judge-front-proof" type="file" accept="image/*" required>
 
                     <label class="auth-label" for="judge-back-proof">Upload Back Image</label>
-                    <input class="auth-input file-input" id="judge-back-proof" name="backProof" type="file"
-                        accept="image/*" required>
+                    <input class="auth-input file-input" id="judge-back-proof" type="file" accept="image/*" required>
 
-                    <button class="auth-submit judge-theme upload-verification-btn" type="button">Submit
-                        Verification</button>
+                    <button class="auth-submit judge-theme upload-verification-btn" id="submitBtn" type="submit">
+                        Submit Verification
+                    </button>
 
                     <div class="flow-actions">
-                        <button class="secondary-btn back-home-btn" type="button">Back To Home</button>
-                        <button class="secondary-btn back-previous-btn" type="button">Back To Previous</button>
+                        <button class="secondary-btn back-home-btn" id="btnHome" type="button">Back To Home</button>
+                        <button class="secondary-btn back-previous-btn" id="btnPrev" type="button">Back To Previous</button>
                     </div>
                 </form>
             </div>
         </section>
-
-        <footer class="np-footer">
-            <div class="footer-primary-links">
-                <div class="footer-grid">
-                    <div class="footer-col">
-                        <ul>
-                            <li><a href="#">AI Case Search</a></li>
-                            <li><a href="#">FAQ / User Guides</a></li>
-                            <li><a href="#">Service Status</a></li>
-                            <li><a href="#">Developer API</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-col">
-                        <ul>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Data Handling Protocol</a></li>
-                            <li><a href="#">Feedback Portal</a></li>
-                            <li><a href="#">Accessibility</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-col">
-                        <ul>
-                            <li><a href="#">About Nav Pravah</a></li>
-                            <li><a href="#">The Team (Code Dazzlers)</a></li>
-                            <li><a href="#">Technology Stack</a></li>
-                            <li><a href="#">MHERM Hackathon '26</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-secondary-info">
-                <div class="policy-links">
-                    <a href="#">Website Policies</a> |
-                    <a href="#">Contact Us</a> |
-                    <a href="#">Help</a> |
-                    <a href="#">Disclaimer</a>
-                </div>
-            </div>
-        </footer>
     </main>
 
-    <script src="../scripts/auth.js"></script>
-</body>
+    <script>
+        // 1. Supabase Configuration
+        const SUPABASE_URL = 'https://shotgiqungofuoquwpzw.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNob3RnaXF1bmdvZnVvcXV3cHp3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQwMzQ3ODcsImV4cCI6MjA4OTYxMDc4N30.iN89Qk8pCF3TxokVQxCPhvbANQQpCTKCAYV5MM8p--M';
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
+        const uploadForm = document.getElementById('uploadForm');
+        const submitBtn = document.getElementById('submitBtn');
+
+        uploadForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Check if user is logged in
+            const { data: { user } } = await supabaseClient.auth.getUser();
+            if (!user) {
+                alert("Please log in or register first!");
+                window.location.href = "register.html";
+                return;
+            }
+
+            const frontFile = document.getElementById('judge-front-proof').files[0];
+            const backFile = document.getElementById('judge-back-proof').files[0];
+
+            // UI Feedback
+            submitBtn.innerText = "Uploading to Vault...";
+            submitBtn.disabled = true;
+
+            try {
+                // STEP 1: Upload Front Image
+                const frontExt = frontFile.name.split('.').pop();
+                const frontPath = `${user.id}/front_${Date.now()}.${frontExt}`;
+                const { error: frontErr } = await supabaseClient.storage
+                    .from('judge_licenses') // MUST match your Bucket Name in Supabase
+                    .upload(frontPath, frontFile);
+
+                if (frontErr) throw frontErr;
+
+                // STEP 2: Upload Back Image
+                const backExt = backFile.name.split('.').pop();
+                const backPath = `${user.id}/back_${Date.now()}.${backExt}`;
+                const { error: backErr } = await supabaseClient.storage
+                    .from('judge_licenses')
+                    .upload(backPath, backFile);
+
+                if (backErr) throw backErr;
+
+                // STEP 3: Save file paths into the judges_profile table
+                const { error: dbError } = await supabaseClient
+                    .from('judges_profile')
+                    .update({ 
+                        license_front_url: frontPath,
+                        license_back_url: backPath,
+                        is_verified: false 
+                    })
+                    .eq('id', user.id);
+
+                if (dbError) throw dbError;
+
+                alert("Verification submitted! An admin will review your licence shortly.");
+                window.location.href = "../index.html";
+
+            } catch (err) {
+                alert("Upload Error: " + err.message);
+                console.error(err);
+            } finally {
+                submitBtn.innerText = "Submit Verification";
+                submitBtn.disabled = false;
+            }
+        });
+
+        // Navigation
+        document.getElementById('btnHome').onclick = () => window.location.href = '../index.html';
+        document.getElementById('btnPrev').onclick = () => window.history.back();
+    </script>
+</body>
 </html>
