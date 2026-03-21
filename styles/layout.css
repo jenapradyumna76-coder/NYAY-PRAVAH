@@ -11,14 +11,79 @@ body {
     width: calc(100% - 10px);
 }
 
-.tagsection {
-    background-color: #020912;
-    height: 3rem;
-    border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* Layout map:
+    1) Header + hero + responsive behavior (top of file)
+    2) Navigation component rules
+    3) Footer, services, about, mentor sections
+    4) Utility and state-specific overrides near the end */
 
+/* Main container stacking */
+main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* Header: Three-row stack with no overlaps */
+.site-header {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #020912;
+    border-radius: 5px;
+    position: relative;
+    z-index: 30;
+}
+
+/* Row 1: Logo and Tagline (horizontal) */
+.header-row-1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0;
+}
+
+/* Tagsection - Row 1 Left Side */
+.tagsection {
+    background-color: #0F0E47;
+    height: 3rem;
+    border-radius: 0.5rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    flex: 1;
+}
+
+/* Logo Section - Row 1 Right Side */
+.logo-section {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 8rem;
+    padding: 0 20px;
+    margin-top: 0;
+    margin-bottom: 0;
+    background-color: #ffffff;
+    transition: background-color 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+    position: relative;
+    z-index: 15;
+}
+
+.logo-section.logo-scrolled {
+    background-color: #007BFF;
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+}
+
+.logo-image {
+    height: 7.6rem;
+    width: 7.6rem;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    background-color: #ffffff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 }
 
 #tag {
@@ -82,13 +147,45 @@ body {
     }
 }
 
-/* Hero Carousel */
+/* Hero Carousel - Row 3: Starts below entire header */
 .hero-carousel {
     border-radius: 5px;
     width: 100%;
-    height: 25rem;
+    height: 42rem;
+    position: relative;
+    z-index: 1;
+    margin-top: 0;
     overflow: hidden;
+    /* Adaptive blend: fades image alpha into page background for any image */
+    -webkit-mask-image: linear-gradient(to bottom,
+            rgba(0, 0, 0, 1) 0%,
+            rgba(0, 0, 0, 1) 76%,
+            rgba(0, 0, 0, 0.78) 86%,
+            rgba(0, 0, 0, 0.38) 93%,
+            rgba(0, 0, 0, 0) 100%);
+    mask-image: linear-gradient(to bottom,
+            rgba(0, 0, 0, 1) 0%,
+            rgba(0, 0, 0, 1) 76%,
+            rgba(0, 0, 0, 0.78) 86%,
+            rgba(0, 0, 0, 0.38) 93%,
+            rgba(0, 0, 0, 0) 100%);
 
+}
+
+.hero-carousel::after {
+    /* Top-only soft highlight; bottom blending is controlled by mask-image above */
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom,
+            rgba(255, 255, 255, 0.9) 0%,
+            rgba(255, 255, 255, 0.25) 10%,
+            rgba(255, 255, 255, 0) 18%);
+    pointer-events: none;
+    z-index: 2;
 }
 
 .carousel-container {
@@ -107,6 +204,7 @@ body {
 }
 
 .carousel-slide img {
+    /* Keep each image fixed to one slide width while the strip translates */
     width: 20%;
     height: 100%;
     object-fit: cover;
@@ -182,9 +280,44 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+
+    /* Mobile-first adjustments: compact header/nav and preserve carousel readability */
     .nav {
         height: auto;
         padding: 10px;
+    }
+
+    /* Mobile Tag Section */
+    .tagsection {
+        height: 2.5rem;
+        padding: 0 10px;
+    }
+
+    #tag {
+        font-size: 1rem;
+        width: 12rem;
+        margin-left: 10px;
+    }
+
+    #tagline {
+        font-size: 0.95rem;
+        margin-left: 15px;
+        padding-left: 15px;
+    }
+
+    /* Mobile Logo Section */
+    .logo-section {
+        margin-top: 0;
+        margin-bottom: 0;
+        padding: 0 10px;
+        height: 2.5rem;
+    }
+
+    .logo-image {
+        height: 2.4rem;
+        width: 2.4rem;
+        border: 1.5px solid #ffffff;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
     }
 
     .top-row {
@@ -215,7 +348,21 @@ body {
 
     .hero-carousel {
         position: relative;
+        height: 36rem;
+        margin-top: 0;
         overflow: hidden;
+        -webkit-mask-image: linear-gradient(to bottom,
+                rgba(0, 0, 0, 1) 0%,
+                rgba(0, 0, 0, 1) 74%,
+                rgba(0, 0, 0, 0.78) 85%,
+                rgba(0, 0, 0, 0.36) 93%,
+                rgba(0, 0, 0, 0) 100%);
+        mask-image: linear-gradient(to bottom,
+                rgba(0, 0, 0, 1) 0%,
+                rgba(0, 0, 0, 1) 74%,
+                rgba(0, 0, 0, 0.78) 85%,
+                rgba(0, 0, 0, 0.36) 93%,
+                rgba(0, 0, 0, 0) 100%);
     }
 
     /* One single overlay to handle both top and bottom blending */
@@ -227,21 +374,15 @@ body {
         width: 100%;
         height: 100%;
 
-        /* THE FIX: Top is White, Middle is Transparent, Bottom is Blue */
+        /* Keep only a soft top highlight; lower blend is handled by mask */
         background: linear-gradient(to bottom,
-                rgba(255, 255, 255, 1) 0%,
-                /* Pure white at the very top */
-                rgba(255, 255, 255, 0) 20%,
-                /* Fade out quickly so image shows */
-                rgba(87, 185, 255, 0) 80%,
-                /* Stay transparent until near the bottom */
-                rgba(87, 185, 255, 1) 100%
-                /* Match your #57B9FF blue exactly */
-            );
+                rgba(255, 255, 255, 0.9) 0%,
+                rgba(255, 255, 255, 0.22) 10%,
+                rgba(255, 255, 255, 0) 18%);
 
         pointer-events: none;
         /* Crucial so users can still interact with the carousel */
-        z-index: 10;
+        z-index: 2;
         /* Ensures it sits on top of the images */
     }
 
@@ -354,9 +495,10 @@ body {
 }
 
 .navbar {
-    background-color: transparent;
-    height: 5rem;
-    border-radius: 5px;
+    /* Main nav row: second line of header stack */
+    background-color: #ffffff;
+    height: 3rem;
+    border-radius: 0;
     display: flex;
     justify-content: space-between;
     /* Keeps the 3 main sections spread out */
@@ -365,34 +507,37 @@ body {
     position: sticky;
     top: 0;
     z-index: 1000;
+    width: 100%;
+    transition: background-color 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
 }
 
-/* Ensure the center links stay centered */
+/* [Behavior] Keep center navigation links aligned */
 .nav-links {
+    /* Later declaration intentionally refines alignment and vertical centering */
     display: flex;
     gap: 25px;
     list-style: none;
     margin: 0;
     padding: 0;
     flex: 1;
-    /* These two lines help center the middle section */
+    /* [Behavior] Center the middle links cluster */
     justify-content: center;
 }
 
-/* The right side container */
+/* [Section] Right-side navigation actions container */
 .nav-actions {
     display: flex;
     align-items: center;
     gap: 15px;
     flex: 1;
     justify-content: flex-end;
-    /* Pushes buttons to the far right */
+    /* [Behavior] Push role buttons to the far right */
 }
 
-/* Fix the placeholder visibility */
+/* [Note] Ensure search placeholder remains readable */
 .search-bar input::placeholder {
     color: #555 !important;
-    /* Darker gray so you can actually read it */
+    /* [Behavior] Darker gray improves placeholder contrast */
     opacity: 1;
 }
 
@@ -411,11 +556,11 @@ body {
 .nav-links {
     display: flex;
     align-items: center;
-    /* THE MAGIC LINE: Vertically centers everything */
+    /* [Behavior] Vertically center link items */
     justify-content: center;
-    /* Centers the whole group in the navbar */
+    /* [Behavior] Center the full links group */
     gap: 20px;
-    /* Space between Home, About, Services */
+    /* [Behavior] Space between Home, About, Services */
     list-style: none;
     margin: 0;
     padding: 0;
@@ -571,10 +716,9 @@ body {
     box-shadow: 0 12px 24px rgba(123, 104, 238, 0.4);
 }
 
-/* 1. The Scrolled State (Blue) */
+/* [Behavior] On scroll, lock navbar to fixed blue for clear sticky state */
 .nav-scrolled {
     background-color: #007BFF !important;
-    /* Bright Blue */
     box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
     transition: all 0.4s ease-in-out;
 }
@@ -622,9 +766,8 @@ body {
 
 .nav-scrolled .lang-btn {
     background: #ffffff;
-    /* White buttons on Blue background */
+    /* [Behavior] Keep strong contrast on blue navbar */
     color: #007BFF;
-    /* Blue text on the buttons */
     border: 1px solid #ffffff;
 }
 
@@ -1345,14 +1488,66 @@ body {
 }
 
 .services-section {
-    margin-top: 2rem;
+    margin-top: -3rem;
     padding: 1.5rem 1rem 2.5rem;
     background: linear-gradient(180deg, rgba(87, 185, 255, 0.08) 0%, rgba(255, 255, 255, 0.8) 100%);
+    position: relative;
+    z-index: 8;
 }
 
 .services-shell {
     max-width: 1100px;
     margin: 0 auto;
+}
+
+.section-topic-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+}
+
+.section-topic-btn {
+    border: 1px solid rgba(57, 120, 194, 0.35);
+    background: #ffffff;
+    color: #133d6d;
+    border-radius: 999px;
+    padding: 0.5rem 0.9rem;
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.22s ease, color 0.22s ease, transform 0.2s ease;
+}
+
+.section-topic-btn:hover {
+    transform: translateY(-2px);
+}
+
+.section-topic-btn.is-active {
+    background: #1f5fa5;
+    color: #ffffff;
+    border-color: #1f5fa5;
+}
+
+.section-content-panel {
+    margin-top: 1.1rem;
+    background: #ffffff;
+    border: 1px solid rgba(57, 120, 194, 0.28);
+    border-radius: 14px;
+    padding: 1rem;
+    box-shadow: 0 8px 18px rgba(24, 73, 122, 0.1);
+}
+
+.section-content-title {
+    color: #123a6b;
+    font-size: 1.06rem;
+    margin-bottom: 0.45rem;
+}
+
+.section-content-text {
+    color: #2e3f58;
+    line-height: 1.65;
+    font-size: 0.95rem;
 }
 
 .services-heading {
@@ -1423,8 +1618,21 @@ body {
 
 @media (min-width: 700px) {
     .services-section {
-        margin-top: 2.5rem;
+        margin-top: -4rem;
         padding: 2rem 1.25rem 3rem;
+    }
+
+    .section-topic-controls {
+        margin-bottom: 1.25rem;
+    }
+
+    .section-topic-btn {
+        font-size: 0.94rem;
+        padding: 0.58rem 1rem;
+    }
+
+    .section-content-panel {
+        padding: 1.2rem 1.25rem;
     }
 
     .services-grid {
@@ -1569,27 +1777,125 @@ body {
     }
 }
 
-/* Navbar portal controls: circular + larger while fitting nav height */
+.mentor-section {
+    padding: 0 1rem 3.25rem;
+}
+
+.mentor-shell {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: linear-gradient(145deg, #ffffff 0%, #edf7ff 100%);
+    border: 1px solid rgba(44, 104, 176, 0.22);
+    border-radius: 20px;
+    padding: 1.25rem;
+    box-shadow: 0 14px 28px rgba(23, 74, 126, 0.14);
+}
+
+.mentor-heading {
+    font-size: 1.7rem;
+    color: #0c2246;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.mentor-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.1rem;
+    align-items: center;
+}
+
+.mentor-photo-wrap {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.mentor-photo {
+    width: 14rem;
+    height: 14rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #ffffff;
+    box-shadow: 0 12px 26px rgba(34, 95, 161, 0.26);
+}
+
+.mentor-content {
+    background: #ffffff;
+    border: 1px solid rgba(70, 138, 214, 0.2);
+    border-radius: 14px;
+    padding: 1rem;
+}
+
+.mentor-name {
+    font-size: 1.2rem;
+    color: #143a6c;
+    margin-bottom: 0.7rem;
+}
+
+.mentor-text {
+    font-size: 0.98rem;
+    line-height: 1.7;
+    color: #314b6a;
+    margin-bottom: 0.7rem;
+}
+
+.mentor-text:last-child {
+    margin-bottom: 0;
+}
+
+@media (min-width: 700px) {
+    .mentor-section {
+        padding: 0 1.25rem 3.7rem;
+    }
+
+    .mentor-shell {
+        padding: 1.8rem 2rem;
+    }
+
+    .mentor-heading {
+        font-size: 2rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .mentor-layout {
+        grid-template-columns: minmax(220px, 0.95fr) minmax(0, 1.55fr);
+        gap: 1.4rem;
+    }
+
+    .mentor-photo {
+        width: 16.5rem;
+        height: 16.5rem;
+    }
+
+    .mentor-content {
+        padding: 1.25rem;
+    }
+}
+
+/* Navbar portal controls: modern remote-style buttons */
 .navbar .nav-actions .judge-btn,
 .navbar .nav-actions .lawyer-btn {
-    width: 3.4rem;
-    height: 3.4rem;
-    min-width: 3.4rem;
-    padding: 0;
+    width: auto;
+    height: 2.35rem;
+    min-width: 6.4rem;
+    padding: 0 1rem;
     margin-left: 0;
-    border-radius: 50%;
+    border-radius: 0.9rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.68rem;
+    font-size: 0.78rem;
     font-weight: 700;
     line-height: 1;
     text-transform: uppercase;
+    letter-spacing: 0.04em;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), 0 5px 12px rgba(0, 0, 0, 0.22);
     overflow: hidden;
 }
 
-/* Keep circular shape in scrolled state too */
+/* Keep remote-style shape in scrolled state too */
 .navbar.nav-scrolled .nav-actions .judge-btn,
 .navbar.nav-scrolled .nav-actions .lawyer-btn {
-    border-radius: 50%;
+    border-radius: 0.9rem;
 }
