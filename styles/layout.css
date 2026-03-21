@@ -1830,7 +1830,27 @@ main {
 .mentor-name {
     font-size: 1.2rem;
     color: #143a6c;
-    margin-bottom: 0.7rem;
+    margin-bottom: 0.25rem;
+}
+
+.mentor-role {
+    font-size: 0.92rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #1f5fa5;
+    margin-bottom: 0.8rem;
+}
+
+.mentor-quote {
+    margin: 0 0 0.95rem;
+    padding: 0.75rem 0.95rem;
+    border-left: 4px solid #2a78c8;
+    background: linear-gradient(120deg, rgba(50, 126, 210, 0.08) 0%, rgba(255, 255, 255, 0.9) 100%);
+    border-radius: 0 10px 10px 0;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #1f3f66;
 }
 
 .mentor-text {
