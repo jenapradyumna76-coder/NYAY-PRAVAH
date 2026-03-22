@@ -22,8 +22,8 @@
 
         <section class="auth-shell">
             <div class="auth-card popup-card">
-                <h1 class="auth-title">Judge Licence Verification</h1>
-                <p class="auth-subtitle">Upload front and back images for licence verification.</p>
+                <h1 class="auth-title">Judge Licence Upload</h1>
+                <p class="auth-subtitle">Upload front and back images and continue to dashboard.</p>
 
                 <form class="verification-upload-form" id="uploadForm">
                     <label class="auth-label" for="judge-front-proof">Upload Front Image</label>
@@ -35,7 +35,7 @@
                         accept="image/*" required>
 
                     <button class="auth-submit judge-theme upload-verification-btn" id="submitBtn" type="submit">
-                        Submit Verification
+                        Upload Licence
                     </button>
 
                     <div class="flow-actions">
@@ -120,7 +120,91 @@
         </div>
     </footer>
 
-    <script src="../scripts/auth.js"></script>
+    <script>
+        const SUPABASE_URL = 'https://hwvflwartrxmazzjypbp.supabase.co';
+        const SUPABASE_ANON_KEY = 'sb_publishable_aHsV710290uB_VKb-mcSvg_b0IO3aEO';
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        const uploadForm = document.getElementById('uploadForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const homeBtn = document.getElementById('btnHome');
+        const prevBtn = document.getElementById('btnPrev');
+
+        function isStaleUserJwtError(error) {
+            const message = (error?.message || '').toLowerCase();
+            return message.includes('user from sub claim in jwt does not exist');
+        }
+
+        async function uploadFileToStorage(file, userId, sideLabel) {
+            const ext = (file.name.split('.').pop() || 'jpg').toLowerCase();
+            const safeSide = sideLabel === 'front' ? 'front' : 'back';
+            const filePath = `${userId}/${Date.now()}-${safeSide}.${ext}`;
+
+            const { data, error } = await supabaseClient
+                .storage
+                .from('judge-licenses')
+                .upload(filePath, file, {
+                    cacheControl: '3600',
+                    upsert: true,
+                    contentType: file.type || 'application/octet-stream'
+                });
+
+            if (error) throw error;
+            return data.path;
+        }
+
+        uploadForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const frontFile = document.getElementById('judge-front-proof').files?.[0];
+            const backFile = document.getElementById('judge-back-proof').files?.[0];
+
+            if (!frontFile || !backFile) {
+                alert('Please upload both front and back license images.');
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.innerText = 'Uploading...';
+
+            try {
+                const { data: userData, error: userError } = await supabaseClient.auth.getUser();
+                if (userError) throw userError;
+
+                const user = userData?.user;
+                if (!user) {
+                    throw new Error('No active session found. Please login again.');
+                }
+
+                await uploadFileToStorage(frontFile, user.id, 'front');
+                await uploadFileToStorage(backFile, user.id, 'back');
+
+                alert('License uploaded successfully. Redirecting to dashboard.');
+                window.location.href = '../judge-dashboard.html';
+            } catch (error) {
+                if (isStaleUserJwtError(error)) {
+                    await supabaseClient.auth.signOut({ scope: 'local' });
+                    alert('Your session is outdated. Please register/login again.');
+                    window.location.href = './register.html';
+                    return;
+                }
+
+                alert('Upload error: ' + error.message);
+                console.error(error);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerText = 'Upload Licence';
+            }
+        });
+
+        homeBtn.addEventListener('click', () => {
+            window.location.href = '../index.html';
+        });
+
+        prevBtn.addEventListener('click', () => {
+            window.history.back();
+        });
+    </script>
 
 </body>
 
