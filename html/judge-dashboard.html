@@ -13,6 +13,8 @@
 
 <body>
 
+    <div class="sidebar-hover-zone" aria-hidden="true"></div>
+
     <aside class="sidebar">
         <div class="sidebar-logo">
             <img src="../asset/logo/mainlogo.jpeg" alt="Nav Pravah Logo" class="sidebar-logo-img">
@@ -43,6 +45,9 @@
             </div>
             <div class="header-actions">
                 <div class="live-status"><span class="pulse"></span> System Live</div>
+                <button id="loadNewCasesBtn" class="refresh-btn hidden" type="button">
+                    <i class="fas fa-layer-group"></i> Load New Cases
+                </button>
                 <button class="refresh-btn" onclick="fetchDashboardData()">
                     <i class="fas fa-sync-alt"></i> Refresh
                 </button>
@@ -53,8 +58,8 @@
             <h2>Daily Cause List Balance</h2>
             <div class="balance-meter">
                 <div class="track">
-                    <div class="segment backlog-seg" style="width: 50%;">4 BACKLOG</div>
-                    <div class="segment fresh-seg" style="width: 50%;">4 FRESH</div>
+                    <div class="segment backlog-seg" style="width: 50%;">0 BACKLOG</div>
+                    <div class="segment fresh-seg" style="width: 50%;">0 FRESH</div>
                 </div>
             </div>
         </section>

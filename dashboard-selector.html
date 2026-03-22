@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nyay Pravah - Dashboard Selector</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+        }
+
+        .header h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .dashboard-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+        }
+
+        .dashboard-card.judge {
+            border-top: 5px solid #667eea;
+        }
+
+        .dashboard-card.lawyer {
+            border-top: 5px solid #764ba2;
+        }
+
+        .card-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .card-description {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .card-features {
+            text-align: left;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .card-features li {
+            margin-bottom: 8px;
+            list-style: none;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .card-features li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .card-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 40px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .card-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .server-config {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            color: white;
+            margin-top: 40px;
+        }
+
+        .server-config h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .server-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            font-size: 14px;
+        }
+
+        .server-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 3px solid #ffd700;
+        }
+
+        .server-label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .server-value {
+            opacity: 0.9;
+            font-family: 'Courier New', monospace;
+        }
+
+        .status-badge {
+            display: inline-block;
+            background: #4caf50;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .header h1 {
+                font-size: 36px;
+            }
+
+            .server-info {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>⚖️ NYAY PRAVAH</h1>
+            <p>Judicial Case Management System</p>
+        </div>
+
+        <div class="dashboard-grid">
+            <!-- Judge Dashboard -->
+            <a href="html/judge-dashboard.html" class="dashboard-card judge">
+                <div class="card-icon">👨‍⚖️</div>
+                <div class="card-title">Judge Dashboard</div>
+                <div class="card-description">
+                    Full case management and workflow control
+                </div>
+                <div class="card-features">
+                    <ul>
+                        <li>View all cases (Backlog & Fresh)</li>
+                        <li>Mark cases (Adjoined/Stay/Re-hearing)</li>
+                        <li>Real-time case updates</li>
+                        <li>Load new cases</li>
+                    </ul>
+                </div>
+                <button class="card-button">Open Judge Dashboard</button>
+            </a>
+
+            <!-- Lawyer Dashboard -->
+            <a href="html/lawyer-dashboard.html" class="dashboard-card lawyer">
+                <div class="card-icon">👨‍💼</div>
+                <div class="card-title">Lawyer Dashboard</div>
+                <div class="card-description">
+                    View and track case progress
+                </div>
+                <div class="card-features">
+                    <ul>
+                        <li>View all active cases</li>
+                        <li>Track case status</li>
+                        <li>Real-time updates</li>
+                        <li>Case descriptions</li>
+                    </ul>
+                </div>
+                <button class="card-button">Open Lawyer Dashboard</button>
+            </a>
+        </div>
+
+        <!-- Server Configuration -->
+        <div class="server-config">
+            <h3>📡 System Status</h3>
+            <div class="server-info">
+                <div class="server-item">
+                    <div class="server-label">Frontend Server</div>
+                    <div class="server-value">http://localhost:5500</div>
+                    <div class="status-badge">✓ Running</div>
+                </div>
+                <div class="server-item">
+                    <div class="server-label">Backend API</div>
+                    <div class="server-value">http://localhost:4000</div>
+                    <div class="status-badge">✓ Running</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Check if backend is accessible
+        async function checkBackend() {
+            try {
+                const response = await fetch('http://localhost:4000/api/health');
+                if (response.ok) {
+                    console.log('✓ Backend is accessible');
+                } else {
+                    console.warn('⚠ Backend returned status:', response.status);
+                }
+            } catch (error) {
+                console.warn('⚠ Backend not accessible:', error.message);
+            }
+        }
+
+        // Check on page load
+        window.addEventListener('load', checkBackend);
+    </script>
+</body>
+
+</html>
