@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +8,13 @@
     <link rel="stylesheet" href="lawyer-style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
+
 <body>
 
     <aside class="sidebar">
-        <div class="logo"><i class="fas fa-briefcase"></i> <span>NYAY PRAVAH</span>
+        <div class="sidebar-logo">
+            <img src="../asset/logo/mainlogo.jpeg" alt="Nav Pravah Logo" class="sidebar-logo-img">
+            <span class="sidebar-logo-text">NYAY PRAVAH</span>
         </div>
         <nav class="menu">
             <a href="#" class="active"><i class="fas fa-folder"></i> My Cases</a>
@@ -39,7 +43,7 @@
         </section>
 
         <div id="lawyer-grid" class="case-grid">
-            </div>
+        </div>
     </main>
 
     <div id="upload-modal" class="modal hidden">
@@ -57,7 +61,7 @@
             </form>
         </div>
     </div>
-    <script src="lawyer-dashboard.js" ></script>
+    <script src="lawyer-dashboard.js"></script>
     <script>
         const logoutBtn = document.getElementById('logoutBtn');
         if (logoutBtn) {
@@ -71,4 +75,5 @@
         }
     </script>
 </body>
+
 </html>
