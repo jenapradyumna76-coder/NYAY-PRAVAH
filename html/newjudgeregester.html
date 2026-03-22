@@ -139,15 +139,15 @@
         const verifyBtn = document.getElementById('verifyBtn');
 
         function redirectToVerifyJudge() {
-            const primaryUrl = new URL('./verifyjudge.html', window.location.href).toString();
-            const fallbackUrl = new URL('/backend/verifyjudge.html', window.location.origin).toString();
+            const primaryUrl = new URL('./judgeverification.html', window.location.href).toString();
+            const fallbackUrl = new URL('/backend/judgeverification.html', window.location.origin).toString();
 
             window.location.assign(primaryUrl);
 
             // Fallback for hosts with unusual base-path routing.
             setTimeout(() => {
                 const currentPath = window.location.pathname.toLowerCase();
-                if (!currentPath.includes('verifyjudge.html')) {
+                if (!currentPath.includes('judgeverification.html')) {
                     window.location.assign(fallbackUrl);
                 }
             }, 700);
